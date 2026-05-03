@@ -2,6 +2,14 @@
 # .gitignore — Projet MCP-Prolog (Projet Tutoré M1 MIAGE - DS4H - UCA)
 # ==============================================================================
 
+# --- RAPPORT ACADÉMIQUE (privé, ne pas publier) ---
+*.tex
+*.pdf
+*.aux
+*.log
+*.toc
+*.out
+
 # --- SÉCURITÉ CRITIQUE : Secrets & clés API (JAMAIS SUR GITHUB) ---
 .env
 *.env
