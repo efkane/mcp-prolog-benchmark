@@ -1,0 +1,39 @@
+# ==============================================================================
+# .gitignore — Projet MCP-Prolog (Projet Tutoré M1 MIAGE - DS4H - UCA)
+# ==============================================================================
+
+# --- SÉCURITÉ CRITIQUE : Secrets & clés API (JAMAIS SUR GITHUB) ---
+.env
+*.env
+secrets.json
+*secrets*
+
+# --- Environnement Python ---
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# --- Fichiers d'apprentissage du système (données locales, non pertinentes pour le repo) ---
+client/model_learning.json
+server/server_learning.json
+
+# --- Résultats de benchmarks (fichiers JSON volumineux - voir results/ README) ---
+# Décommenter la ligne suivante pour exclure les résultats complets
+# results/
+
+# --- IDE & système ---
+.vscode/settings.json
+.idea/
+*.swp
+Thumbs.db
+.DS_Store
+
+# --- Fichiers temporaires ---
+*.tmp
+*.log

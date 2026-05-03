@@ -1,0 +1,27 @@
+[
+  {
+    "id": "prob054",
+    "size": "csplib",
+    "puzzle": "Can 8 queens be placed on a 8x8 chessboard so that none of the queens can attack each other? A queen attacks other squares on the same row, column, or either diagonal as itself. Find a set of 8 locations on a chessboard, no two of which are on the same row, column or diagonal."
+  },
+  {
+    "id": "prob007",
+    "size": "csplib",
+    "puzzle": "Given the twelve standard pitch-classes (c, c#, d, ...), represented by numbers 0,1,...,11, find a series in which each pitch-class occurs exactly once and in which the musical intervals between neighbouring notes cover the full set of intervals from the minor second (1) to the major seventh (11). That is, for each of the intervals, there is a pair of neighbouring pitch-classes in the series, between which this interval appears."
+  },
+  {
+    "id": "prob012",
+    "size": "csplib",
+    "puzzle": "Nonograms are a puzzle where you shade in squares in a 5x5 grid so that blocks of consecutive shaded squares satisfy constraints given for each row and column. Constraints typically indicate the sequence of shaded blocks (e.g. 3,1 means a block of 3, a gap, and a block of 1). Please formulate a solver for a generic 5x5 nonogram."
+  },
+  {
+    "id": "prob014",
+    "size": "csplib",
+    "puzzle": "Solitaire Battleships. A fleet consists of 1 battleship (length 4), 2 cruisers (length 3), 3 destroyers (length 2) and 4 submarines (length 1). They may be oriented horizontally or vertically on a 10x10 grid. No two ships will occupy adjacent grid squares, not even diagonally. The digits along the right side of and below the grid indicate the number of grid squares in the corresponding rows and columns that are occupied by vessels."
+  },
+  {
+    "id": "prob023",
+    "size": "csplib",
+    "puzzle": "A magic hexagon consists of the numbers 1 to 19 arranged in a hexagonal pattern. We have a constraint that all diagonals sum to 38. The variables are A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S. Diagonals to sum to 38: A+B+C, D+E+F+G, H+I+J+K+L, M+N+O+P, Q+R+S, A+D+H, B+E+I+M, C+F+J+N+Q, G+K+O+R, L+P+S, C+G+L, B+F+K+P, A+E+J+O+S, D+I+N+R, H+M+Q. All variables must be distinct."
+  }
+]

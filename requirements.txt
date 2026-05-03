@@ -1,0 +1,17 @@
+# Dépendances pour le serveur et client MCP
+# ==========================================
+
+# SDK MCP officiel (Model Context Protocol)
+mcp>=1.0.0
+
+# Pour le serveur Starlette (optionnel, si on veut HTTP)
+uvicorn>=0.24.0
+
+# Gestion async
+anyio>=4.0.0
+
+# Typage et validation
+pydantic>=2.0.0
+
+# Utilitaires
+python-dotenv>=1.0.0
