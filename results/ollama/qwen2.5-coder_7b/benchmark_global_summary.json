@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-05-02T15:11:35.310295",
+  "global": {
+    "total_puzzles": 60,
+    "correct": 40,
+    "success_rate_percent": 66.67
+  },
+  "by_size": {
+    "4x4": {
+      "timestamp": "2026-05-02T06:32:10.510453",
+      "size": "4x4",
+      "provider": "ollama",
+      "model": "qwen2.5-coder:7b",
+      "total_puzzles": 15,
+      "correct": 12,
+      "failed": 3,
+      "success_rate_percent": 80.0,
+      "total_time_seconds": 998.1,
+      "avg_time_per_puzzle_seconds": 66.54,
+      "groq_min_delay_s": 4.0,
+      "interrupted": false
+    },
+    "4x5": {
+      "timestamp": "2026-05-02T06:48:48.647150",
+      "size": "4x5",
+      "provider": "ollama",
+      "model": "qwen2.5-coder:7b",
+      "total_puzzles": 15,
+      "correct": 9,
+      "failed": 6,
+      "success_rate_percent": 60.0,
+      "total_time_seconds": 8362.76,
+      "avg_time_per_puzzle_seconds": 557.52,
+      "groq_min_delay_s": 4.0,
+      "interrupted": false
+    },
+    "5x5": {
+      "timestamp": "2026-05-02T09:08:11.453834",
+      "size": "5x5",
+      "provider": "ollama",
+      "model": "qwen2.5-coder:7b",
+      "total_puzzles": 15,
+      "correct": 10,
+      "failed": 5,
+      "success_rate_percent": 66.67,
+      "total_time_seconds": 10005.22,
+      "avg_time_per_puzzle_seconds": 667.01,
+      "groq_min_delay_s": 4.0,
+      "interrupted": false
+    },
+    "5x6": {
+      "timestamp": "2026-05-02T11:54:56.725998",
+      "size": "5x6",
+      "provider": "ollama",
+      "model": "qwen2.5-coder:7b",
+      "total_puzzles": 15,
+      "correct": 9,
+      "failed": 6,
+      "success_rate_percent": 60.0,
+      "total_time_seconds": 11798.57,
+      "avg_time_per_puzzle_seconds": 786.57,
+      "groq_min_delay_s": 4.0,
+      "interrupted": false
+    }
+  }
+}

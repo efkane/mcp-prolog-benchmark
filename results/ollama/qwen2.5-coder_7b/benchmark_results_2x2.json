@@ -1,0 +1,1060 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-01T11:28:48.689334",
+    "size": "2x2",
+    "provider": "ollama",
+    "model": "qwen2.5-coder:7b",
+    "total_puzzles": 20,
+    "correct": 18,
+    "failed": 2,
+    "success_rate_percent": 90.0,
+    "total_time_seconds": 4259.83,
+    "avg_time_per_puzzle_seconds": 212.99,
+    "groq_min_delay_s": 4.0,
+    "interrupted": false
+  },
+  "results": [
+    {
+      "puzzle_id": "lgp-test-2x2-0",
+      "puzzle_size": "2*2",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "MusicGenre"
+        ],
+        "rows": [
+          [
+            "1",
+            "Arnold",
+            "pop"
+          ],
+          [
+            "2",
+            "Eric",
+            "rock"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Arnold": 1,
+          "Eric": 2,
+          "Pop_Music": 1,
+          "Rock_Music": 2
+        },
+        "by_position": {
+          "1": [
+            "Arnold",
+            "Pop_Music"
+          ],
+          "2": [
+            "Eric",
+            "Rock_Music"
+          ]
+        },
+        "raw_output": "[1,2,1,2]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Arnold, Eric,\n        Pop_Music, Rock_Music],\n    Vars ins 1..4,\n    Names = [Arnold, Eric],\n    MusicGenres = [Pop_Music, Rock_Music],\n    all_different(Names),\n    all_different(MusicGenres),\n\n    %% Clue 1: Eric is not in the first house.\n    Eric #\\= 1,\n\n    %% Clue 2: Eric is the person who loves rock music.\n    Eric = Rock_Music,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 249758.2,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-2x2-1",
+      "puzzle_size": "2*2",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Occupation"
+        ],
+        "rows": [
+          [
+            "1",
+            "Eric",
+            "engineer"
+          ],
+          [
+            "2",
+            "Arnold",
+            "doctor"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Arnold": 2,
+          "Eric": 1,
+          "Engineer": 1,
+          "Doctor": 2
+        },
+        "by_position": {
+          "1": [
+            "Eric",
+            "Engineer"
+          ],
+          "2": [
+            "Arnold",
+            "Doctor"
+          ]
+        },
+        "raw_output": "[2,1,1,2]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Arnold, Eric, Engineer, Doctor],\n    Vars ins 1..4,\n    Names = [Eric, Arnold],\n    Occupations = [Engineer, Doctor],\n    all_different(Names),\n    all_different(Occupations),\n    \n    %% Clue 1: Eric is directly left of Arnold.\n    Eric #= Arnold - 1,\n\n    %% Clue 2: The person who is a doctor is not in the first house.\n    Doctor #\\= 1,\n    \n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 209711.1,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-2x2-10",
+      "puzzle_size": "2*2",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "CarModel"
+        ],
+        "rows": [
+          [
+            "1",
+            "Arnold",
+            "ford f150"
+          ],
+          [
+            "2",
+            "Eric",
+            "tesla model 3"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Eric": 2,
+          "Arnold": 1,
+          "Ford_F150": 1,
+          "Tesla_Model_3": 2
+        },
+        "by_position": {
+          "1": [
+            "Arnold",
+            "Ford_F150"
+          ],
+          "2": [
+            "Eric",
+            "Tesla_Model_3"
+          ]
+        },
+        "raw_output": "[2,1,1,2]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Eric, Arnold,\n        Ford_F150, Tesla_Model_3],\n    Vars ins 1..4,\n    Names = [Eric, Arnold],\n    CarModels = [Ford_F150, Tesla_Model_3],\n    all_different(Names),\n    all_different(CarModels),\n\n    %% Clue 1: The person who owns a Ford F-150 is Arnold.\n    Arnold #= Ford_F150,\n\n    %% Clue 2: Arnold is in the first house.\n    Arnold #= 1,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 206286.6,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-2x2-11",
+      "puzzle_size": "2*2",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Occupation"
+        ],
+        "rows": [
+          [
+            "1",
+            "Arnold",
+            "engineer"
+          ],
+          [
+            "2",
+            "Eric",
+            "doctor"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Arnold": 1,
+          "Eric": 2,
+          "Engineer": 1,
+          "Doctor": 2
+        },
+        "by_position": {
+          "1": [
+            "Arnold",
+            "Engineer"
+          ],
+          "2": [
+            "Eric",
+            "Doctor"
+          ]
+        },
+        "raw_output": "[1,2,1,2]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Arnold, Eric, Engineer, Doctor],\n    Vars ins 1..4,\n    Names = [Arnold, Eric],\n    Occupations = [Engineer, Doctor],\n    all_different(Names),\n    all_different(Occupations),\n    \n    %% Clue 1: Arnold is the person who is an engineer.\n    Arnold #= Engineer,\n    \n    %% Clue 2: The person who is an engineer is in the first house.\n    Engineer #= 1,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 194667.5,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-2x2-12",
+      "puzzle_size": "2*2",
+      "status": "failed",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Nationality"
+        ],
+        "rows": [
+          [
+            "1",
+            "Eric",
+            "brit"
+          ],
+          [
+            "2",
+            "Arnold",
+            "dane"
+          ]
+        ]
+      },
+      "parsed_solution": {},
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Arnold, Eric, brit, dane],\n    Vars ins 1..4,\n    Names = [Arnold, Eric],\n    Nationalities = [brit, dane],\n    all_different(Names),\n    all_different(Nationalities),\n\n    %% Clue 1: The British person is somewhere to the left of the Dane.\n    brit #< dane,\n\n    %% Clue 2: Eric is not in the second house.\n    Eric #\\= 2,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [
+        "Attempt 1: ERROR: [Thread main] -g solve: Type error: `integer' expected, found `brit' (an atom)",
+        "Attempt 2: ERROR: [Thread main] -g solve: Type error: `integer' expected, found `brit' (an atom)",
+        "Attempt 3: ERROR: [Thread main] -g solve: Type error: `integer' expected, found `brit' (an atom)"
+      ],
+      "attempts": 3,
+      "time_ms": 380035.6,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-2x2-13",
+      "puzzle_size": "2*2",
+      "status": "failed",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Education"
+        ],
+        "rows": [
+          [
+            "1",
+            "Eric",
+            "associate"
+          ],
+          [
+            "2",
+            "Arnold",
+            "high school"
+          ]
+        ]
+      },
+      "parsed_solution": {},
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Eric, Arnold],\n    Vars ins 1..2,\n    EducationLevels = [High_School, Associate],\n    all_different(Names),\n    all_different(EducationLevels),\n    \n    %% Clue 1: The person with a high school diploma is in the second house.\n    High_School #= 2,\n    \n    %% Clue 2: Eric is not in the second house.\n    Eric #\\= 2,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [
+        "Attempt 1: Warning: c:/users/admin/appdata/local/temp/tmppu7saw72.pl:2:\r\nWarning:    Singleton variables: [Arnold,Associate,Names]\r\nERROR: [Thread main] -g solve: Arguments are not sufficiently instantiated",
+        "Attempt 2: Warning: c:/users/admin/appdata/local/temp/tmpjiymuw8o.pl:2:\r\nWarning:    Singleton variables: [Arnold,Associate,Names]\r\nERROR: [Thread main] -g solve: Arguments are not sufficiently instantiated",
+        "Attempt 3: Warning: c:/users/admin/appdata/local/temp/tmpnf8nar2t.pl:2:\r\nWarning:    Singleton variables: [Arnold,Associate,Names]\r\nERROR: [Thread main] -g solve: Arguments are not sufficiently instantiated"
+      ],
+      "attempts": 3,
+      "time_ms": 401608.3,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-2x2-14",
+      "puzzle_size": "2*2",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Food"
+        ],
+        "rows": [
+          [
+            "1",
+            "Eric",
+            "grilled cheese"
+          ],
+          [
+            "2",
+            "Arnold",
+            "pizza"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Eric": 1,
+          "Arnold": 2,
+          "Pizza": 2,
+          "Grilled_Cheese": 1
+        },
+        "by_position": {
+          "1": [
+            "Eric",
+            "Grilled_Cheese"
+          ],
+          "2": [
+            "Arnold",
+            "Pizza"
+          ]
+        },
+        "raw_output": "[1,2,2,1]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Eric, Arnold,\n        Pizza, Grilled_Cheese],\n    Vars ins 1..2,\n    Names = [Eric, Arnold],\n    Lunches = [Pizza, Grilled_Cheese],\n    all_different(Names),\n    all_different(Lunches),\n\n    %% Clue 1: The person who is a pizza lover is in the second house.\n    Pizza #= 2,\n\n    %% Clue 2: Arnold is not in the first house.\n    Arnold #\\= 1,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 232868.1,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-2x2-15",
+      "puzzle_size": "2*2",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "CarModel"
+        ],
+        "rows": [
+          [
+            "1",
+            "Arnold",
+            "ford f150"
+          ],
+          [
+            "2",
+            "Eric",
+            "tesla model 3"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Arnold": 1,
+          "Eric": 2,
+          "Ford_F150": 1,
+          "Tesla_Model_3": 2
+        },
+        "by_position": {
+          "1": [
+            "Arnold",
+            "Ford_F150"
+          ],
+          "2": [
+            "Eric",
+            "Tesla_Model_3"
+          ]
+        },
+        "raw_output": "[1,2,1,2]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Arnold, Eric,\n        Ford_F150, Tesla_Model_3],\n    Vars ins 1..4,\n    Names = [Arnold, Eric],\n    CarModels = [Ford_F150, Tesla_Model_3],\n    all_different(Names),\n    all_different(CarModels),\n    \n    %% Clue 1: The person who owns a Ford F-150 is not in the second house.\n    Ford_F150 #\\= 2,\n    \n    %% Clue 2: Arnold is directly left of Eric.\n    Arnold #= Eric - 1,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 239989.3,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-2x2-16",
+      "puzzle_size": "2*2",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "FavoriteSport"
+        ],
+        "rows": [
+          [
+            "1",
+            "Eric",
+            "basketball"
+          ],
+          [
+            "2",
+            "Arnold",
+            "soccer"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Arnold": 2,
+          "Eric": 1,
+          "Soccer": 2,
+          "Basketball": 1
+        },
+        "by_position": {
+          "1": [
+            "Eric",
+            "Basketball"
+          ],
+          "2": [
+            "Arnold",
+            "Soccer"
+          ]
+        },
+        "raw_output": "[2,1,2,1]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Arnold, Eric,\n        Soccer, Basketball],\n    Vars ins 1..2,\n    Names = [Arnold, Eric],\n    Sports = [Soccer, Basketball],\n    all_different(Names),\n    all_different(Sports),\n\n    %% Clue 1: Arnold is in the second house.\n    Arnold #= 2,\n\n    %% Clue 2: The person who loves soccer is in the second house.\n    Soccer #= 2,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 212500.4,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-2x2-17",
+      "puzzle_size": "2*2",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Cigar"
+        ],
+        "rows": [
+          [
+            "1",
+            "Arnold",
+            "pall mall"
+          ],
+          [
+            "2",
+            "Eric",
+            "prince"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Arnold": 1,
+          "Eric": 2,
+          "Pall_Mall": 1,
+          "Prince": 2
+        },
+        "by_position": {
+          "1": [
+            "Arnold",
+            "Pall_Mall"
+          ],
+          "2": [
+            "Eric",
+            "Prince"
+          ]
+        },
+        "raw_output": "[1,2,1,2]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Arnold, Eric,\n        Pall_Mall, Prince],\n    Vars ins 1..4,\n    Names = [Arnold, Eric],\n    Cigars = [Pall_Mall, Prince],\n    all_different(Names),\n    all_different(Cigars),\n\n    %% Clue 1: The person partial to Pall Mall is Arnold.\n    Pall_Mall #= Arnold,\n\n    %% Clue 2: Arnold is in the first house.\n    Arnold #= 1,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 217945.5,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-2x2-18",
+      "puzzle_size": "2*2",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Height"
+        ],
+        "rows": [
+          [
+            "1",
+            "Eric",
+            "short"
+          ],
+          [
+            "2",
+            "Arnold",
+            "very short"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Arnold": 1,
+          "Eric": 3,
+          "Short": 2,
+          "Very_Short": 1
+        },
+        "by_position": {
+          "1": [
+            "Arnold",
+            "Very_Short"
+          ],
+          "2": [
+            "Short"
+          ],
+          "3": [
+            "Eric"
+          ]
+        },
+        "raw_output": "[1,3,2,1]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Arnold, Eric, Short, Very_Short],\n    Vars ins 1..4,\n    Names = [Arnold, Eric],\n    Heights = [Short, Very_Short],\n    all_different(Names),\n    all_different(Heights),\n    \n    %% Clue 1: Arnold is the person who is very short.\n    Arnold #= Very_Short,\n    \n    %% Clue 2: Eric is not in the second house.\n    Eric #\\= 2,\n    \n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 192255.1,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-2x2-19",
+      "puzzle_size": "2*2",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Children"
+        ],
+        "rows": [
+          [
+            "1",
+            "Eric",
+            "Fred"
+          ],
+          [
+            "2",
+            "Arnold",
+            "Bella"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Eric": 1,
+          "Arnold": 2,
+          "Bella": 2,
+          "Fred": 1
+        },
+        "by_position": {
+          "1": [
+            "Eric",
+            "Fred"
+          ],
+          "2": [
+            "Arnold",
+            "Bella"
+          ]
+        },
+        "raw_output": "[1,2,2,1]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Eric, Arnold, Bella, Fred],\n    Vars ins 1..2,\n    Names = [Eric, Arnold],\n    Children = [Bella, Fred],\n    all_different(Names),\n    all_different(Children),\n    \n    %% Clue 1: Eric is directly left of the person whose child is named Bella.\n    Eric #= Bella - 1,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 181153.1,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-2x2-2",
+      "puzzle_size": "2*2",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Animal"
+        ],
+        "rows": [
+          [
+            "1",
+            "Eric",
+            "cat"
+          ],
+          [
+            "2",
+            "Arnold",
+            "horse"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Eric": 1,
+          "Arnold": 2,
+          "Horse": 2,
+          "Cat": 1
+        },
+        "by_position": {
+          "1": [
+            "Eric",
+            "Cat"
+          ],
+          "2": [
+            "Arnold",
+            "Horse"
+          ]
+        },
+        "raw_output": "[1,2,2,1]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Eric, Arnold, Horse, Cat],\n    Vars ins 1..4,\n    Names = [Eric, Arnold],\n    Pets = [Horse, Cat],\n    all_different(Names),\n    all_different(Pets),\n    \n    %% Clue 1: Arnold is the person who keeps horses.\n    Arnold #= Horse,\n    \n    %% Clue 2: Arnold is in the second house.\n    Arnold #= 2,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 181962.6,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-2x2-20",
+      "puzzle_size": "2*2",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Children"
+        ],
+        "rows": [
+          [
+            "1",
+            "Arnold",
+            "Fred"
+          ],
+          [
+            "2",
+            "Eric",
+            "Bella"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Eric": 2,
+          "Arnold": 1,
+          "Fred": 1,
+          "Bella": 2,
+          "House_1": 1,
+          "House_2": 2
+        },
+        "by_position": {
+          "1": [
+            "Arnold",
+            "Fred",
+            "House_1"
+          ],
+          "2": [
+            "Eric",
+            "Bella",
+            "House_2"
+          ]
+        },
+        "raw_output": "[2,1,1,2,1,2]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Eric, Arnold, Fred, Bella,\n        House_1, House_2],\n    Vars ins 1..2,\n    Names = [Eric, Arnold],\n    Children = [Fred, Bella],\n    Houses = [House_1, House_2],\n    all_different(Names),\n    all_different(Children),\n    all_different(Houses),\n\n    %% Clue 1: The person whose child is named Fred is Arnold.\n    Arnold #= Fred,\n\n    %% Clue 2: Eric is in the second house.\n    Eric #= 2,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 212871.1,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-2x2-21",
+      "puzzle_size": "2*2",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Nationality"
+        ],
+        "rows": [
+          [
+            "1",
+            "Eric",
+            "dane"
+          ],
+          [
+            "2",
+            "Arnold",
+            "brit"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Eric": 1,
+          "Arnold": 2,
+          "Dane": 1,
+          "Brit": 2,
+          "House_1_Nationality": 1,
+          "House_2_Nationality": 1
+        },
+        "by_position": {
+          "1": [
+            "Eric",
+            "Dane",
+            "House_1_Nationality",
+            "House_2_Nationality"
+          ],
+          "2": [
+            "Arnold",
+            "Brit"
+          ]
+        },
+        "raw_output": "[1,2,1,2,1,1]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Eric, Arnold, Dane, Brit,\n        House_1_Nationality, House_2_Nationality],\n    Vars ins 1..2,\n    Names = [Eric, Arnold],\n    Nationalities = [Dane, Brit],\n    all_different(Names),\n    all_different(Nationalities),\n\n    %% Clue 1: The Dane is Eric.\n    Eric #= Dane,\n\n    %% Clue 2: The British person is not in the first house.\n    Brit #\\= 1,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 160544.3,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-2x2-22",
+      "puzzle_size": "2*2",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "CarModel"
+        ],
+        "rows": [
+          [
+            "1",
+            "Arnold",
+            "tesla model 3"
+          ],
+          [
+            "2",
+            "Eric",
+            "ford f150"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Arnold": 1,
+          "Eric": 2,
+          "Ford_F150": 2,
+          "Tesla_Model_3": 1
+        },
+        "by_position": {
+          "1": [
+            "Arnold",
+            "Tesla_Model_3"
+          ],
+          "2": [
+            "Eric",
+            "Ford_F150"
+          ]
+        },
+        "raw_output": "[1,2,2,1]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Arnold, Eric,\n        Ford_F150, Tesla_Model_3],\n    Vars ins 1..2,\n    Names = [Arnold, Eric],\n    CarModels = [Ford_F150, Tesla_Model_3],\n    all_different(Names),\n    all_different(CarModels),\n    \n    %% Clue 1: Eric is somewhere to the right of the person who owns a Tesla Model 3.\n    Eric #> Tesla_Model_3,\n    \n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 162326.4,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-2x2-23",
+      "puzzle_size": "2*2",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Birthday"
+        ],
+        "rows": [
+          [
+            "1",
+            "Eric",
+            "april"
+          ],
+          [
+            "2",
+            "Arnold",
+            "sept"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Eric": 1,
+          "Arnold": 2,
+          "April": 1,
+          "September": 2
+        },
+        "by_position": {
+          "1": [
+            "Eric",
+            "April"
+          ],
+          "2": [
+            "Arnold",
+            "September"
+          ]
+        },
+        "raw_output": "[1,2,1,2]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Eric, Arnold, April, September],\n    Vars ins 1..4,\n    Names = [Eric, Arnold],\n    Months = [April, September],\n    all_different(Names),\n    all_different(Months),\n    \n    %% Clue 1: Eric is the person whose birthday is in April.\n    Eric #= April,\n    \n    %% Clue 2: Eric is not in the second house.\n    Eric #\\= 2,\n    \n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 151711.7,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-2x2-24",
+      "puzzle_size": "2*2",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Nationality"
+        ],
+        "rows": [
+          [
+            "1",
+            "Arnold",
+            "dane"
+          ],
+          [
+            "2",
+            "Eric",
+            "brit"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Eric": 1,
+          "Arnold": 3,
+          "Dane": 1,
+          "Brit": 2
+        },
+        "by_position": {
+          "1": [
+            "Eric",
+            "Dane"
+          ],
+          "2": [
+            "Brit"
+          ],
+          "3": [
+            "Arnold"
+          ]
+        },
+        "raw_output": "[1,3,1,2]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Eric, Arnold, Dane, Brit],\n    Vars ins 1..4,\n    Names = [Eric, Arnold],\n    Nationalities = [Dane, Brit],\n    all_different(Names),\n    all_different(Nationalities),\n\n    %% Clue 1: The British person is not in the first house.\n    Brit #\\= 1,\n\n    %% Clue 2: Arnold is not in the second house.\n    Arnold #\\= 2,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 152695.6,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-2x2-25",
+      "puzzle_size": "2*2",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Vacation"
+        ],
+        "rows": [
+          [
+            "1",
+            "Eric",
+            "beach"
+          ],
+          [
+            "2",
+            "Arnold",
+            "mountain"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Arnold": 2,
+          "Eric": 1,
+          "Beach_Vacation": 1,
+          "Mountain_Vacation": 2
+        },
+        "by_position": {
+          "1": [
+            "Eric",
+            "Beach_Vacation"
+          ],
+          "2": [
+            "Arnold",
+            "Mountain_Vacation"
+          ]
+        },
+        "raw_output": "[2,1,1,2]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Arnold, Eric, Beach_Vacation, Mountain_Vacation],\n    Vars ins 1..2,\n    Names = [Arnold, Eric],\n    Vacations = [Beach_Vacation, Mountain_Vacation],\n    all_different(Names),\n    all_different(Vacations),\n    \n    %% Clue 1: Arnold is somewhere to the right of the person who loves beach vacations.\n    Arnold #> Beach_Vacation,\n    \n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 155372.0,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-2x2-26",
+      "puzzle_size": "2*2",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "HairColor"
+        ],
+        "rows": [
+          [
+            "1",
+            "Arnold",
+            "black"
+          ],
+          [
+            "2",
+            "Eric",
+            "brown"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Arnold": 1,
+          "Eric": 2,
+          "Brown_Hair": 2,
+          "Black_Hair": 1
+        },
+        "by_position": {
+          "1": [
+            "Arnold",
+            "Black_Hair"
+          ],
+          "2": [
+            "Eric",
+            "Brown_Hair"
+          ]
+        },
+        "raw_output": "[1,2,2,1]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Arnold, Eric, Brown_Hair, Black_Hair],\n    Vars ins 1..2,\n    Names = [Arnold, Eric],\n    HairColors = [Brown_Hair, Black_Hair],\n    all_different(Names),\n    all_different(HairColors),\n\n    %% Clue 1: Arnold is in the first house.\n    Arnold #= 1,\n\n    %% Clue 2: The person who has brown hair is not in the first house.\n    Brown_Hair #\\= 1,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 161771.5,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    }
+  ]
+}

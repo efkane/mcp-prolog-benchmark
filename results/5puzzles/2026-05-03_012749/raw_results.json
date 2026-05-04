@@ -1,0 +1,72 @@
+[
+  {
+    "id": "prob054",
+    "status": "correct",
+    "time_ms": 331996.2079524994,
+    "attempts": 1,
+    "c1_intention": "Oui",
+    "c2_outils": "Oui",
+    "c3_succes": "Oui",
+    "c4_retries": 0,
+    "c5_python": "Non",
+    "c6_generalite": "Faible (hardcodé)",
+    "raw_prolog": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8],\n    Vars ins 1..8,\n    all_different(Vars),\n    \n    %% Clue 1: No two queens can be in the same row.\n    %% This is already ensured by all_different/1.\n\n    %% Clue 2: No two queens can be in the same column.\n    %% This is also already ensured by all_different/1.\n\n    %% Clue 3: No two queens can be on the same diagonal.\n    Q1 #\\= Q2 + 1, Q1 #\\= Q2 - 1,\n    Q1 #\\= Q3 + 2, Q1 #\\= Q3 - 2,\n    Q1 #\\= Q4 + 3, Q1 #\\= Q4 - 3,\n    Q1 #\\= Q5 + 4, Q1 #\\= Q5 - 4,\n    Q1 #\\= Q6 + 5, Q1 #\\= Q6 - 5,\n    Q1 #\\= Q7 + 6, Q1 #\\= Q7 - 6,\n    Q1 #\\= Q8 + 7, Q1 #\\= Q8 - 7,\n    \n    Q2 #\\= Q3 + 1, Q2 #\\= Q3 - 1,\n    Q2 #\\= Q4 + 2, Q2 #\\= Q4 - 2,\n    Q2 #\\= Q5 + 3, Q2 #\\= Q5 - 3,\n    Q2 #\\= Q6 + 4, Q2 #\\= Q6 - 4,\n    Q2 #\\= Q7 + 5, Q2 #\\= Q7 - 5,\n    Q2 #\\= Q8 + 6, Q2 #\\= Q8 - 6,\n\n    Q3 #\\= Q4 + 1, Q3 #\\= Q4 - 1,\n    Q3 #\\= Q5 + 2, Q3 #\\= Q5 - 2,\n    Q3 #\\= Q6 + 3, Q3 #\\= Q6 - 3,\n    Q3 #\\= Q7 + 4, Q3 #\\= Q7 - 4,\n    Q3 #\\= Q8 + 5, Q3 #\\= Q8 - 5,\n\n    Q4 #\\= Q5 + 1, Q4 #\\= Q5 - 1,\n    Q4 #\\= Q6 + 2, Q4 #\\= Q6 - 2,\n    Q4 #\\= Q7 + 3, Q4 #\\= Q7 - 3,\n    Q4 #\\= Q8 + 4, Q4 #\\= Q8 - 4,\n\n    Q5 #\\= Q6 + 1, Q5 #\\= Q6 - 1,\n    Q5 #\\= Q7 + 2, Q5 #\\= Q7 - 2,\n    Q5 #\\= Q8 + 3, Q5 #\\= Q8 - 3,\n\n    Q6 #\\= Q7 + 1, Q6 #\\= Q7 - 1,\n    Q6 #\\= Q8 + 2, Q6 #\\= Q8 - 2,\n\n    Q7 #\\= Q8 + 1, Q7 #\\= Q8 - 1,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+    "raw_output": "[1,5,8,6,3,7,2,4]"
+  },
+  {
+    "id": "prob007",
+    "status": "correct",
+    "time_ms": 253121.24609947205,
+    "attempts": 1,
+    "c1_intention": "Oui",
+    "c2_outils": "Oui",
+    "c3_succes": "Oui",
+    "c4_retries": 0,
+    "c5_python": "Non",
+    "c6_generalite": "Moyenne/Élevée (à vérifier)",
+    "raw_prolog": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [C, C_Sharp, D, D_Sharp, E, F, F_Sharp, G, G_Sharp, A, A_Sharp, B],\n    Vars ins 0..11,\n    Notes = [C, C_Sharp, D, D_Sharp, E, F, F_Sharp, G, G_Sharp, A, A_Sharp, B],\n    all_different(Notes),\n    \n    %% Clue 1: The interval between the first and second note is a minor second (1).\n    abs(C - C_Sharp) #= 1,\n    \n    %% Clue 2: The interval between the second and third note is a major second (2).\n    abs(C_Sharp - D) #= 2,\n    \n    %% Clue 3: The interval between the third and fourth note is a minor third (3).\n    abs(D - D_Sharp) #= 3,\n    \n    %% Clue 4: The interval between the fourth and fifth note is a major third (4).\n    abs(D_Sharp - E) #= 4,\n    \n    %% Clue 5: The interval between the fifth and sixth note is a perfect fourth (5).\n    abs(E - F) #= 5,\n    \n    %% Clue 6: The interval between the sixth and seventh note is a tritone (6).\n    abs(F - F_Sharp) #= 6,\n    \n    %% Clue 7: The interval between the seventh and eighth note is a perfect fifth (7).\n    abs(F_Sharp - G) #= 7,\n    \n    %% Clue 8: The interval between the eighth and ninth note is a minor sixth (8).\n    abs(G - G_Sharp) #= 8,\n    \n    %% Clue 9: The interval between the ninth and tenth note is a major sixth (9).\n    abs(G_Sharp - A) #= 9,\n    \n    %% Clue 10: The interval between the tenth and eleventh note is a minor seventh (10).\n    abs(A - A_Sharp) #= 10,\n    \n    %% Clue 11: The interval between the eleventh and twelfth note is a major seventh (11).\n    abs(A_Sharp - B) #= 11,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+    "raw_output": "[5,6,4,7,3,8,2,9,1,10,0,11]"
+  },
+  {
+    "id": "prob012",
+    "status": "failed",
+    "time_ms": 1503047.449350357,
+    "attempts": 3,
+    "c1_intention": "Oui",
+    "c2_outils": "Oui",
+    "c3_succes": "Non",
+    "c4_retries": 2,
+    "c5_python": "Non",
+    "c6_generalite": "N/A",
+    "raw_prolog": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Row1_1, Row1_2, Row1_3, Row1_4, Row1_5,\n            Row2_1, Row2_2, Row2_3, Row2_4, Row2_5,\n            Row3_1, Row3_2, Row3_3, Row3_4, Row3_5,\n            Row4_1, Row4_2, Row4_3, Row4_4, Row4_5,\n            Row5_1, Row5_2, Row5_3, Row5_4, Row5_5,\n            Col1_1, Col1_2, Col1_3, Col1_4, Col1_5,\n            Col2_1, Col2_2, Col2_3, Col2_4, Col2_5,\n            Col3_1, Col3_2, Col3_3, Col3_4, Col3_5,\n            Col4_1, Col4_2, Col4_3, Col4_4, Col4_5,\n            Col5_1, Col5_2, Col5_3, Col5_4, Col5_5],\n    Vars ins 0..1,\n    Rows = [Row1_1, Row1_2, Row1_3, Row1_4, Row1_5,\n             Row2_1, Row2_2, Row2_3, Row2_4, Row2_5,\n             Row3_1, Row3_2, Row3_3, Row3_4, Row3_5,\n             Row4_1, Row4_2, Row4_3, Row4_4, Row4_5,\n             Row5_1, Row5_2, Row5_3, Row5_4, Row5_5],\n    Columns = [Col1_1, Col1_2, Col1_3, Col1_4, Col1_5,\n               Col2_1, Col2_2, Col2_3, Col2_4, Col2_5,\n               Col3_1, Col3_2, Col3_3, Col3_4, Col3_5,\n               Col4_1, Col4_2, Col4_3, Col4_4, Col4_5,\n               Col5_1, Col5_2, Col5_3, Col5_4, Col5_5],\n    all_different(Rows),\n    all_different(Columns),\n\n    %% Clue 1: The first row has a block of 3 shaded squares.\n    Row1_1 #= 1, Row1_2 #= 1, Row1_3 #= 1, Row1_4 #= 0, Row1_5 #= 0,\n\n    %% Clue 2: The second row has a block of 2 shaded squares.\n    Row2_1 #= 0, Row2_2 #= 1, Row2_3 #= 1, Row2_4 #= 0, Row2_5 #= 0,\n\n    %% Clue 3: The third row has a block of 1 shaded square.\n    Row3_1 #= 0, Row3_2 #= 0, Row3_3 #= 1, Row3_4 #= 0, Row3_5 #= 0,\n\n    %% Clue 4: The fourth row has a block of 4 shaded squares.\n    Row4_1 #= 1, Row4_2 #= 1, Row4_3 #= 1, Row4_4 #= 1, Row4_5 #= 0,\n\n    %% Clue 5: The fifth row has a block of 5 shaded squares.\n    Row5_1 #= 1, Row5_2 #= 1, Row5_3 #= 1, Row5_4 #= 1, Row5_5 #= 1,\n\n    %% Clue 6: The first column has a block of 2 shaded squares.\n    Col1_1 #= 0, Col1_2 #= 1, Col1_3 #= 1, Col1_4 #= 0, Col1_5 #= 0,\n\n    %% Clue 7: The second column has a block of 3 shaded squares.\n    Col2_1 #= 1, Col2_2 #= 1, Col2_3 #= 1, Col2_4 #= 0, Col2_5 #= 0,\n\n    %% Clue 8: The third column has a block of 1 shaded square.\n    Col3_1 #= 0, Col3_2 #= 0, Col3_3 #= 1, Col3_4 #= 0, Col3_5 #= 0,\n\n    %% Clue 9: The fourth column has a block of 2 shaded squares.\n    Col4_1 #= 0, Col4_2 #= 1, Col4_3 #= 1, Col4_4 #= 0, Col4_5 #= 0,\n\n    %% Clue 10: The fifth column has a block of 1 shaded square.\n    Col5_1 #= 0, Col5_2 #= 0, Col5_3 #= 0, Col5_4 #= 1, Col5_5 #= 0,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+    "raw_output": ""
+  },
+  {
+    "id": "prob014",
+    "status": "correct",
+    "time_ms": 224560.96982955933,
+    "attempts": 1,
+    "c1_intention": "Oui",
+    "c2_outils": "Oui",
+    "c3_succes": "Oui",
+    "c4_retries": 0,
+    "c5_python": "Non",
+    "c6_generalite": "Faible (hardcodé)",
+    "raw_prolog": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Battleship, Cruiser1, Cruiser2, Destroyer1, Destroyer2, Destroyer3, Submarine1, Submarine2, Submarine3, Submarine4],\n    Vars ins 1..10,\n    ShipTypes = [Battleship, Cruiser1, Cruiser2, Destroyer1, Destroyer2, Destroyer3, Submarine1, Submarine2, Submarine3, Submarine4],\n    all_different(ShipTypes),\n    \n    %% Clue 1: The battleship is in the first row.\n    Battleship #= 1,\n    \n    %% Clue 2: The cruiser is in the second row.\n    Cruiser1 #= 2,\n    Cruiser2 #= 3,\n    \n    %% Clue 3: The destroyer is in the third row.\n    Destroyer1 #= 4,\n    Destroyer2 #= 5,\n    Destroyer3 #= 6,\n    \n    %% Clue 4: The submarine is in the fourth row.\n    Submarine1 #= 7,\n    Submarine2 #= 8,\n    Submarine3 #= 9,\n    Submarine4 #= 10,\n    \n    labeling([], Vars),\n    write(Vars), nl.",
+    "raw_output": "[1,2,3,4,5,6,7,8,9,10]"
+  },
+  {
+    "id": "prob023",
+    "status": "correct",
+    "time_ms": 286467.5204753876,
+    "attempts": 1,
+    "c1_intention": "Oui",
+    "c2_outils": "Oui",
+    "c3_succes": "Oui",
+    "c4_retries": 0,
+    "c5_python": "Non",
+    "c6_generalite": "Faible (hardcodé)",
+    "raw_prolog": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S],\n    Vars ins 1..19,\n    all_different(Vars),\n    \n    %% Clue 1: Diagonal A+B+C = 38\n    A + B + C #= 38,\n    \n    %% Clue 2: Diagonal D+E+F+G = 38\n    D + E + F + G #= 38,\n    \n    %% Clue 3: Diagonal H+I+J+K+L = 38\n    H + I + J + K + L #= 38,\n    \n    %% Clue 4: Diagonal M+N+O+P = 38\n    M + N + O + P #= 38,\n    \n    %% Clue 5: Diagonal Q+R+S = 38\n    Q + R + S #= 38,\n    \n    %% Clue 6: Diagonal A+D+H = 38\n    A + D + H #= 38,\n    \n    %% Clue 7: Diagonal B+E+I+M = 38\n    B + E + I + M #= 38,\n    \n    %% Clue 8: Diagonal C+F+J+N+Q = 38\n    C + F + J + N + Q #= 38,\n    \n    %% Clue 9: Diagonal G+K+O+R = 38\n    G + K + O + R #= 38,\n    \n    %% Clue 10: Diagonal L+P+S = 38\n    L + P + S #= 38,\n    \n    %% Clue 11: Diagonal C+G+L = 38\n    C + G + L #= 38,\n    \n    %% Clue 12: Diagonal B+F+K+P = 38\n    B + F + K + P #= 38,\n    \n    %% Clue 13: Diagonal A+E+J+O+S = 38\n    A + E + J + O + S #= 38,\n    \n    %% Clue 14: Diagonal D+I+N+R = 38\n    D + I + N + R #= 38,\n    \n    %% Clue 15: Diagonal H+M+Q = 38\n    H + M + Q #= 38,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+    "raw_output": "[3,17,18,19,7,1,11,16,2,5,6,9,12,4,8,14,10,13,15]"
+  }
+]

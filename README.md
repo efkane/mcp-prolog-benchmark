@@ -63,13 +63,11 @@ Benchmark sur ZebraLogic (dataset Polymath) avec Qwen2.5-Coder:7b en local (temp
 | XL         | 30    | 19      | 63,3 %      |
 | **Total**  | **140**| **109** | **77,8 %**     |
 
-**Note importante** : Les résultats bruts (fichiers JSON et CSV) ne sont pas stockés sur GitHub pour réduire la taille du dépôt. Vous pouvez les regénérer en lanç ant :
+Les résultats détaillés sont disponibles dans le dossier `results/ollama/` de ce dépôt. Vous pouvez les consulter directement sans relancer les benchmarks. Si vous voulez régénérer vos propres résultats :
 
 ```bash
 python benchmark.py
 ```
-
-Les résultats seront enregistrés dans `results/ollama/` sur votre machine.
 
 ---
 
@@ -106,12 +104,11 @@ cp .env.example .env
 
 Ces fichiers ne sont **pas versionnés** sur GitHub (voir `.gitignore`) :
 
-- `results/` et `results/ollama/` — vos benchmarks générés localement
 - `.env` — vos clés API personnelles
 - `.venv/` — votre environnement virtuel
 - Fichiers de log
 
-C'est voulu : ils restent sur votre machine et ne remontent jamais sur le dépôt.
+Les résultats de benchmarks (`results/ollama/`) **sont** inclus sur GitHub pour permettre à vos tuteurs et aux autres de les consulter sans relancer les tests.
 
 ---
 

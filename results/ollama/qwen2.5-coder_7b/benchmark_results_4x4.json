@@ -1,0 +1,1404 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-02T06:32:10.510453",
+    "size": "4x4",
+    "provider": "ollama",
+    "model": "qwen2.5-coder:7b",
+    "total_puzzles": 15,
+    "correct": 12,
+    "failed": 3,
+    "success_rate_percent": 80.0,
+    "total_time_seconds": 998.1,
+    "avg_time_per_puzzle_seconds": 66.54,
+    "groq_min_delay_s": 4.0,
+    "interrupted": false
+  },
+  "results": [
+    {
+      "puzzle_id": "lgp-test-4x4-0",
+      "puzzle_size": "4*4",
+      "status": "failed",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Education",
+          "Height",
+          "Drink"
+        ],
+        "rows": [
+          [
+            "1",
+            "Arnold",
+            "associate",
+            "short",
+            "coffee"
+          ],
+          [
+            "2",
+            "Eric",
+            "master",
+            "very short",
+            "milk"
+          ],
+          [
+            "3",
+            "Peter",
+            "bachelor",
+            "average",
+            "water"
+          ],
+          [
+            "4",
+            "Alice",
+            "high school",
+            "tall",
+            "tea"
+          ]
+        ]
+      },
+      "parsed_solution": {},
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Arnold, Alice, Eric, Peter,\n        Master, Bachelor, High_School, Associate,\n        Short, Average, Tall, Very_Short,\n        Water, Coffee, Tea, Milk],\n    Vars ins 1..4,\n    Names = [Arnold, Alice, Eric, Peter],\n    EducationLevels = [Master, Bachelor, High_School, Associate],\n    Heights = [Short, Average, Tall, Very_Short],\n    Drinks = [Water, Coffee, Tea, Milk],\n    all_different(Names),\n    all_different(EducationLevels),\n    all_different(Heights),\n    all_different(Drinks),\n\n    %% Clue 1: The person who likes milk is somewhere to the left of the person with a bachelor's degree.\n    Milk #< Bachelor,\n\n    %% Clue 2: The person who likes milk and the person with a bachelor's degree are next to each other.\n    abs(Milk - Bachelor) =:= 1,\n\n    %% Clue 3: Alice is the person who is tall.\n    Alice = Tall,\n\n    %% Clue 4: Peter is not in the second house.\n    Peter #\\= 2,\n\n    %% Clue 5: Arnold is in the first house.\n    Arnold = 1,\n\n    %% Clue 6: The person who has an average height is not in the second house.\n    Average #\\= 2,\n\n    %% Clue 7: Arnold is directly left of the person with a master's degree.\n    Arnold + 1 =:= Master,\n\n    %% Clue 8: The coffee drinker is the person who is short.\n    Coffee = Short,\n\n    %% Clue 9: There is one house between the person with a master's degree and the person with a high school diploma.\n    abs(Master - High_School) =:= 2,\n\n    %% Clue 10: The one who only drinks water is directly left of Alice.\n    Water + 1 =:= Alice,\n\n    %% Clue 11: The person who is short is somewhere to the left of the person who is tall.\n    Short #< Tall,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [
+        "Attempt 1: ERROR: [Thread main] -g solve: =:=/2: Arguments are not sufficiently instantiated",
+        "Attempt 2: ERROR: [Thread main] -g solve: =:=/2: Arguments are not sufficiently instantiated",
+        "Attempt 3: ERROR: [Thread main] -g solve: =:=/2: Arguments are not sufficiently instantiated"
+      ],
+      "attempts": 3,
+      "time_ms": 664733.9,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-4x4-1",
+      "puzzle_size": "4*4",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "HouseStyle",
+          "Animal",
+          "Hobby"
+        ],
+        "rows": [
+          [
+            "1",
+            "Eric",
+            "craftsman",
+            "bird",
+            "photography"
+          ],
+          [
+            "2",
+            "Alice",
+            "ranch",
+            "fish",
+            "cooking"
+          ],
+          [
+            "3",
+            "Peter",
+            "victorian",
+            "cat",
+            "gardening"
+          ],
+          [
+            "4",
+            "Arnold",
+            "colonial",
+            "horse",
+            "painting"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Alice": 2,
+          "Eric": 1,
+          "Arnold": 4,
+          "Peter": 3,
+          "Victorian_House": 3,
+          "Craftsman_House": 1,
+          "Ranch_Style_House": 2,
+          "Colonial_Style_House": 4,
+          "Fish": 2,
+          "Cat": 3,
+          "Horse": 4,
+          "Bird": 1,
+          "Cooking": 2,
+          "Painting": 4,
+          "Gardening": 3,
+          "Photography": 1
+        },
+        "by_position": {
+          "1": [
+            "Eric",
+            "Craftsman_House",
+            "Bird",
+            "Photography"
+          ],
+          "2": [
+            "Alice",
+            "Ranch_Style_House",
+            "Fish",
+            "Cooking"
+          ],
+          "3": [
+            "Peter",
+            "Victorian_House",
+            "Cat",
+            "Gardening"
+          ],
+          "4": [
+            "Arnold",
+            "Colonial_Style_House",
+            "Horse",
+            "Painting"
+          ]
+        },
+        "raw_output": "[2,1,4,3,3,1,2,4,2,3,4,1,2,4,3,1]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Alice, Eric, Arnold, Peter,\n        Victorian_House, Craftsman_House, Ranch_Style_House, Colonial_Style_House,\n        Fish, Cat, Horse, Bird,\n        Cooking, Painting, Gardening, Photography],\n    Vars ins 1..4,\n    Names = [Alice, Eric, Arnold, Peter],\n    HouseStyles = [Victorian_House, Craftsman_House, Ranch_Style_House, Colonial_Style_House],\n    Animals = [Fish, Cat, Horse, Bird],\n    Hobbies = [Cooking, Painting, Gardening, Photography],\n    all_different(Names),\n    all_different(HouseStyles),\n    all_different(Animals),\n    all_different(Hobbies),\n\n    %% Clue 1: The person who loves cooking is in the second house.\n    Cooking #= 2,\n\n    %% Clue 2: The fish enthusiast is not in the first house.\n    Fish #\\= 1,\n\n    %% Clue 3: Alice is in the second house.\n    Alice #= 2,\n\n    %% Clue 4: The cat lover is the person residing in a Victorian house.\n    Cat #= Victorian_House,\n\n    %% Clue 5: The person who enjoys gardening is the person residing in a Victorian house.\n    Gardening #= Victorian_House,\n\n    %% Clue 6: The person in a ranch-style home is not in the first house.\n    Ranch_Style_House #\\= 1,\n\n    %% Clue 7: The person who keeps horses is somewhere to the right of the person residing in a Victorian house.\n    Horse #> Victorian_House,\n\n    %% Clue 8: Peter is somewhere to the left of the person who paints as a hobby.\n    Peter #< Painting,\n\n    %% Clue 9: The person in a Craftsman-style house is Eric.\n    Craftsman_House #= Eric,\n\n    %% Clue 10: The person residing in a Victorian house is in the third house.\n    Victorian_House #= 3,\n\n    %% Clue 11: Peter is directly left of the person living in a colonial-style house.\n    Peter #= Colonial_Style_House - 1,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 292485.3,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-4x4-10",
+      "puzzle_size": "4*4",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "MusicGenre",
+          "Mother",
+          "Education"
+        ],
+        "rows": [
+          [
+            "1",
+            "Eric",
+            "rock",
+            "Janelle",
+            "associate"
+          ],
+          [
+            "2",
+            "Peter",
+            "classical",
+            "Holly",
+            "high school"
+          ],
+          [
+            "3",
+            "Arnold",
+            "pop",
+            "Kailyn",
+            "master"
+          ],
+          [
+            "4",
+            "Alice",
+            "jazz",
+            "Aniya",
+            "bachelor"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Arnold": 3,
+          "Peter": 2,
+          "Alice": 4,
+          "Eric": 1,
+          "Janelle": 1,
+          "Aniya": 4,
+          "Kailyn": 3,
+          "Holly": 2,
+          "Master": 3,
+          "High_School": 2,
+          "Bachelor": 4,
+          "Associate": 1,
+          "Rock_Music": 1,
+          "Jazz_Music": 4,
+          "Pop_Music": 3,
+          "Classical_Music": 2
+        },
+        "by_position": {
+          "1": [
+            "Eric",
+            "Janelle",
+            "Associate",
+            "Rock_Music"
+          ],
+          "2": [
+            "Peter",
+            "Holly",
+            "High_School",
+            "Classical_Music"
+          ],
+          "3": [
+            "Arnold",
+            "Kailyn",
+            "Master",
+            "Pop_Music"
+          ],
+          "4": [
+            "Alice",
+            "Aniya",
+            "Bachelor",
+            "Jazz_Music"
+          ]
+        },
+        "raw_output": "[3,2,4,1,1,4,3,2,3,2,4,1,1,4,3,2]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Arnold, Peter, Alice, Eric,\n        Janelle, Aniya, Kailyn, Holly,\n        Master, High_School, Bachelor, Associate,\n        Rock_Music, Jazz_Music, Pop_Music, Classical_Music],\n    Vars ins 1..4,\n    Names = [Arnold, Peter, Alice, Eric],\n    Mothers = [Janelle, Aniya, Kailyn, Holly],\n    Degrees = [Master, High_School, Bachelor, Associate],\n    MusicGenres = [Rock_Music, Jazz_Music, Pop_Music, Classical_Music],\n    all_different(Names),\n    all_different(Mothers),\n    all_different(Degrees),\n    all_different(MusicGenres),\n\n    %% Clue 1: Alice is the person who loves jazz music.\n    Alice #= Jazz_Music,\n\n    %% Clue 2: The person with a master's degree is somewhere to the left of The person whose mother's name is Aniya.\n    Master #< Aniya,\n\n    %% Clue 3: Alice is not in the second house.\n    Alice #\\= 2,\n\n    %% Clue 4: The person with a high school diploma is the person who loves classical music.\n    High_School #= Classical_Music,\n\n    %% Clue 5: The person with a master's degree is in the third house.\n    Master #= 3,\n\n    %% Clue 6: The person whose mother's name is Janelle is Eric.\n    Eric #= Janelle,\n\n    %% Clue 7: The person with a master's degree is Arnold.\n    Arnold #= Master,\n\n    %% Clue 8: The person whose mother's name is Holly is in the second house.\n    Holly #= 2,\n\n    %% Clue 9: Peter is the person with a high school diploma.\n    Peter #= High_School,\n\n    %% Clue 10: The person with an associate's degree is the person who loves rock music.\n    Associate #= Rock_Music,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 283624.9,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-4x4-11",
+      "puzzle_size": "4*4",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Children",
+          "Animal",
+          "Education"
+        ],
+        "rows": [
+          [
+            "1",
+            "Peter",
+            "Fred",
+            "bird",
+            "bachelor"
+          ],
+          [
+            "2",
+            "Alice",
+            "Bella",
+            "cat",
+            "high school"
+          ],
+          [
+            "3",
+            "Arnold",
+            "Samantha",
+            "horse",
+            "master"
+          ],
+          [
+            "4",
+            "Eric",
+            "Meredith",
+            "fish",
+            "associate"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Eric": 4,
+          "Arnold": 3,
+          "Peter": 1,
+          "Alice": 2,
+          "Bella": 2,
+          "Fred": 1,
+          "Samantha": 3,
+          "Meredith": 4,
+          "Cat": 2,
+          "Horse": 3,
+          "Fish": 4,
+          "Bird": 1,
+          "Bachelor": 1,
+          "Associate": 4,
+          "Master": 3,
+          "High_School": 2
+        },
+        "by_position": {
+          "1": [
+            "Peter",
+            "Fred",
+            "Bird",
+            "Bachelor"
+          ],
+          "2": [
+            "Alice",
+            "Bella",
+            "Cat",
+            "High_School"
+          ],
+          "3": [
+            "Arnold",
+            "Samantha",
+            "Horse",
+            "Master"
+          ],
+          "4": [
+            "Eric",
+            "Meredith",
+            "Fish",
+            "Associate"
+          ]
+        },
+        "raw_output": "[4,3,1,2,2,1,3,4,2,3,4,1,1,4,3,2]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Eric, Arnold, Peter, Alice,\n        Bella, Fred, Samantha, Meredith,\n        Cat, Horse, Fish, Bird,\n        Bachelor, Associate, Master, High_School],\n    Vars ins 1..4,\n    Names = [Eric, Arnold, Peter, Alice],\n    Children = [Bella, Fred, Samantha, Meredith],\n    Animals = [Cat, Horse, Fish, Bird],\n    Education = [Bachelor, Associate, Master, High_School],\n    all_different(Names),\n    all_different(Children),\n    all_different(Animals),\n    all_different(Education),\n\n    %% Clue 1: Arnold is not in the first house.\n    Arnold #\\= 1,\n\n    %% Clue 2: The bird keeper is not in the fourth house.\n    Bird #\\= 4,\n\n    %% Clue 3: The person with a high school diploma is the cat lover.\n    High_School #= Cat,\n\n    %% Clue 4: The person's child is named Bella is the cat lover.\n    Bella #= Cat,\n\n    %% Clue 5: The person with a high school diploma is not in the first house.\n    High_School #\\= 1,\n\n    %% Clue 6: Arnold is the person with a master's degree.\n    Arnold #= Master,\n\n    %% Clue 7: The person who keeps horses is directly left of the fish enthusiast.\n    Horse #= Fish - 1,\n\n    %% Clue 8: The person with a bachelor's degree is Peter.\n    Peter #= Bachelor,\n\n    %% Clue 9: The person's child is named Fred is not in the fourth house.\n    Fred #\\= 4,\n\n    %% Clue 10: Eric is somewhere to the right of the cat lover.\n    Eric #> Cat,\n\n    %% Clue 11: Eric is not in the third house.\n    Eric #\\= 3,\n\n    %% Clue 12: The person's child is named Samantha is Arnold.\n    Samantha #= Arnold,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 276201.2,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-4x4-12",
+      "puzzle_size": "4*4",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "MusicGenre",
+          "Hobby",
+          "Food"
+        ],
+        "rows": [
+          [
+            "1",
+            "Eric",
+            "jazz",
+            "photography",
+            "pizza"
+          ],
+          [
+            "2",
+            "Alice",
+            "pop",
+            "painting",
+            "grilled cheese"
+          ],
+          [
+            "3",
+            "Peter",
+            "rock",
+            "cooking",
+            "stew"
+          ],
+          [
+            "4",
+            "Arnold",
+            "classical",
+            "gardening",
+            "spaghetti"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Alice": 2,
+          "Eric": 1,
+          "Arnold": 4,
+          "Peter": 3,
+          "Jazz": 1,
+          "Rock": 3,
+          "Pop": 2,
+          "Classical": 4,
+          "Cooking": 3,
+          "Painting": 2,
+          "Gardening": 4,
+          "Photography": 1,
+          "Stew": 3,
+          "Pizza": 1,
+          "Grilled_Cheese": 2,
+          "Spaghetti": 4
+        },
+        "by_position": {
+          "1": [
+            "Eric",
+            "Jazz",
+            "Photography",
+            "Pizza"
+          ],
+          "2": [
+            "Alice",
+            "Pop",
+            "Painting",
+            "Grilled_Cheese"
+          ],
+          "3": [
+            "Peter",
+            "Rock",
+            "Cooking",
+            "Stew"
+          ],
+          "4": [
+            "Arnold",
+            "Classical",
+            "Gardening",
+            "Spaghetti"
+          ]
+        },
+        "raw_output": "[2,1,4,3,1,3,2,4,3,2,4,1,3,1,2,4]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Alice, Eric, Arnold, Peter,\n        Jazz, Rock, Pop, Classical,\n        Cooking, Painting, Gardening, Photography,\n        Stew, Pizza, Grilled_Cheese, Spaghetti],\n    Vars ins 1..4,\n    Names = [Alice, Eric, Arnold, Peter],\n    MusicGenres = [Jazz, Rock, Pop, Classical],\n    Hobbies = [Cooking, Painting, Gardening, Photography],\n    Lunches = [Stew, Pizza, Grilled_Cheese, Spaghetti],\n    all_different(Names),\n    all_different(MusicGenres),\n    all_different(Hobbies),\n    all_different(Lunches),\n\n    %% Clue 1: The person who is a pizza lover is somewhere to the left of the person who loves eating grilled cheese.\n    Pizza #< Grilled_Cheese,\n\n    %% Clue 2: Arnold is not in the first house.\n    Arnold #\\= 1,\n\n    %% Clue 3: Peter is directly left of the person who enjoys gardening.\n    Peter #= Gardening - 1,\n\n    %% Clue 4: The person who loves eating grilled cheese and Peter are next to each other.\n    abs(Grilled_Cheese - Peter) #= 1,\n\n    %% Clue 5: There are two houses between the person who loves jazz music and Arnold.\n    abs(Jazz - Arnold) #= 3,\n\n    %% Clue 6: The person who loves cooking is the person who loves rock music.\n    Cooking #= Rock,\n\n    %% Clue 7: The person who loves pop music is the person who paints as a hobby.\n    Pop #= Painting,\n\n    %% Clue 8: The person who paints as a hobby is Alice.\n    Painting = Alice,\n\n    %% Clue 9: The person who enjoys gardening is the person who loves the spaghetti eater.\n    Gardening #= Spaghetti,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 271166.3,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-4x4-13",
+      "puzzle_size": "4*4",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Cigar",
+          "FavoriteSport",
+          "Drink"
+        ],
+        "rows": [
+          [
+            "1",
+            "Alice",
+            "prince",
+            "soccer",
+            "water"
+          ],
+          [
+            "2",
+            "Arnold",
+            "blue master",
+            "tennis",
+            "coffee"
+          ],
+          [
+            "3",
+            "Eric",
+            "dunhill",
+            "basketball",
+            "tea"
+          ],
+          [
+            "4",
+            "Peter",
+            "pall mall",
+            "swimming",
+            "milk"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Alice": 1,
+          "Eric": 3,
+          "Arnold": 2,
+          "Peter": 4,
+          "Prince": 1,
+          "Dunhill": 3,
+          "Blue_Master": 2,
+          "Pall_Mall": 4,
+          "Swimming": 4,
+          "Basketball": 3,
+          "Soccer": 1,
+          "Tennis": 2,
+          "Coffee": 2,
+          "Water": 1,
+          "Milk": 4,
+          "Tea": 3
+        },
+        "by_position": {
+          "1": [
+            "Alice",
+            "Prince",
+            "Soccer",
+            "Water"
+          ],
+          "2": [
+            "Arnold",
+            "Blue_Master",
+            "Tennis",
+            "Coffee"
+          ],
+          "3": [
+            "Eric",
+            "Dunhill",
+            "Basketball",
+            "Tea"
+          ],
+          "4": [
+            "Peter",
+            "Pall_Mall",
+            "Swimming",
+            "Milk"
+          ]
+        },
+        "raw_output": "[1,3,2,4,1,3,2,4,4,3,1,2,2,1,4,3]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Alice, Eric, Arnold, Peter,\n        Prince, Dunhill, Blue_Master, Pall_Mall,\n        Swimming, Basketball, Soccer, Tennis,\n        Coffee, Water, Milk, Tea],\n    Vars ins 1..4,\n    Names = [Alice, Eric, Arnold, Peter],\n    Cigars = [Prince, Dunhill, Blue_Master, Pall_Mall],\n    Sports = [Swimming, Basketball, Soccer, Tennis],\n    Drinks = [Coffee, Water, Milk, Tea],\n    all_different(Names),\n    all_different(Cigars),\n    all_different(Sports),\n    all_different(Drinks),\n\n    %% Clue 1: Peter is in the fourth house.\n    Peter #= 4,\n\n    %% Clue 2: The tea drinker is the person who loves basketball.\n    Tea #= Basketball,\n\n    %% Clue 3: Arnold is the person who smokes Blue Master.\n    Arnold #= Blue_Master,\n\n    %% Clue 4: The person who loves basketball is Eric.\n    Eric #= Basketball,\n\n    %% Clue 5: The person who loves tennis is the person who smokes Blue Master.\n    Tennis #= Blue_Master,\n\n    %% Clue 6: There are two houses between the one who only drinks water and Peter.\n    abs(Water - Peter) #= 3,\n\n    %% Clue 7: The coffee drinker is Arnold.\n    Coffee #= Arnold,\n\n    %% Clue 8: The person who loves basketball is in the third house.\n    Basketball #= 3,\n\n    %% Clue 9: The Prince smoker is the person who loves soccer.\n    Prince #= Soccer,\n\n    %% Clue 10: Peter is the person partial to Pall Mall.\n    Peter #= Pall_Mall,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 256648.0,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-4x4-14",
+      "puzzle_size": "4*4",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Mother",
+          "Smoothie",
+          "BookGenre"
+        ],
+        "rows": [
+          [
+            "1",
+            "Alice",
+            "Holly",
+            "desert",
+            "mystery"
+          ],
+          [
+            "2",
+            "Arnold",
+            "Kailyn",
+            "watermelon",
+            "science fiction"
+          ],
+          [
+            "3",
+            "Peter",
+            "Janelle",
+            "dragonfruit",
+            "fantasy"
+          ],
+          [
+            "4",
+            "Eric",
+            "Aniya",
+            "cherry",
+            "romance"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Peter": 3,
+          "Arnold": 2,
+          "Eric": 4,
+          "Alice": 1,
+          "Kailyn": 2,
+          "Holly": 1,
+          "Aniya": 4,
+          "Janelle": 3,
+          "Dragonfruit": 3,
+          "Desert": 1,
+          "Watermelon": 2,
+          "Cherry": 4,
+          "Fantasy": 3,
+          "Romance": 4,
+          "Mystery": 1,
+          "Science_Fiction": 2
+        },
+        "by_position": {
+          "1": [
+            "Alice",
+            "Holly",
+            "Desert",
+            "Mystery"
+          ],
+          "2": [
+            "Arnold",
+            "Kailyn",
+            "Watermelon",
+            "Science_Fiction"
+          ],
+          "3": [
+            "Peter",
+            "Janelle",
+            "Dragonfruit",
+            "Fantasy"
+          ],
+          "4": [
+            "Eric",
+            "Aniya",
+            "Cherry",
+            "Romance"
+          ]
+        },
+        "raw_output": "[3,2,4,1,2,1,4,3,3,1,2,4,3,4,1,2]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Peter, Arnold, Eric, Alice,\n        Kailyn, Holly, Aniya, Janelle,\n        Dragonfruit, Desert, Watermelon, Cherry,\n        Fantasy, Romance, Mystery, Science_Fiction],\n    Vars ins 1..4,\n    Names = [Peter, Arnold, Eric, Alice],\n    Mothers = [Kailyn, Holly, Aniya, Janelle],\n    Smoothies = [Dragonfruit, Desert, Watermelon, Cherry],\n    BookGenres = [Fantasy, Romance, Mystery, Science_Fiction],\n    all_different(Names),\n    all_different(Mothers),\n    all_different(Smoothies),\n    all_different(BookGenres),\n\n    %% Clue 1: The Dragonfruit smoothie lover is The person whose mother's name is Janelle.\n    Dragonfruit #= Janelle,\n\n    %% Clue 2: Alice is directly left of the person who loves science fiction books.\n    Alice #= Science_Fiction - 1,\n\n    %% Clue 3: The Desert smoothie lover is directly left of the Watermelon smoothie lover.\n    Desert #= Watermelon - 1,\n\n    %% Clue 4: The person whose mother's name is Holly is the person who loves mystery books.\n    Holly #= Mystery,\n\n    %% Clue 5: Alice is somewhere to the left of Peter.\n    Alice #< Peter,\n\n    %% Clue 6: The person who loves fantasy books is Peter.\n    Peter #= Fantasy,\n\n    %% Clue 7: Peter and the person who likes Cherry smoothies are next to each other.\n    abs(Peter - Cherry) #= 1,\n\n    %% Clue 8: The person who loves romance books is not in the first house.\n    Romance #\\= 1,\n\n    %% Clue 9: The person whose mother's name is Aniya is somewhere to the right of the Dragonfruit smoothie lover.\n    Aniya #> Dragonfruit,\n\n    %% Clue 10: The person who loves science fiction books is Arnold.\n    Arnold #= Science_Fiction,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 284058.7,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-4x4-15",
+      "puzzle_size": "4*4",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "FavoriteSport",
+          "Vacation",
+          "Food"
+        ],
+        "rows": [
+          [
+            "1",
+            "Alice",
+            "swimming",
+            "city",
+            "spaghetti"
+          ],
+          [
+            "2",
+            "Arnold",
+            "soccer",
+            "beach",
+            "stew"
+          ],
+          [
+            "3",
+            "Peter",
+            "tennis",
+            "cruise",
+            "grilled cheese"
+          ],
+          [
+            "4",
+            "Eric",
+            "basketball",
+            "mountain",
+            "pizza"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Peter": 2,
+          "Eric": 3,
+          "Alice": 1,
+          "Arnold": 4,
+          "Swimming": 1,
+          "Tennis": 3,
+          "Basketball": 2,
+          "Soccer": 4,
+          "Cruise": 3,
+          "Beach": 2,
+          "Mountain": 4,
+          "City": 1,
+          "Grilled_Cheese": 3,
+          "Spaghetti": 1,
+          "Stew": 2,
+          "Pizza": 4
+        },
+        "by_position": {
+          "1": [
+            "Alice",
+            "Swimming",
+            "City",
+            "Spaghetti"
+          ],
+          "2": [
+            "Peter",
+            "Basketball",
+            "Beach",
+            "Stew"
+          ],
+          "3": [
+            "Eric",
+            "Tennis",
+            "Cruise",
+            "Grilled_Cheese"
+          ],
+          "4": [
+            "Arnold",
+            "Soccer",
+            "Mountain",
+            "Pizza"
+          ]
+        },
+        "raw_output": "[2,3,1,4,1,3,2,4,3,2,4,1,3,1,2,4]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Peter, Eric, Alice, Arnold,\n        Swimming, Tennis, Basketball, Soccer,\n        Cruise, Beach, Mountain, City,\n        Grilled_Cheese, Spaghetti, Stew, Pizza],\n    Vars ins 1..4,\n    Names = [Peter, Eric, Alice, Arnold],\n    Sports = [Swimming, Tennis, Basketball, Soccer],\n    Vacations = [Cruise, Beach, Mountain, City],\n    Lunches = [Grilled_Cheese, Spaghetti, Stew, Pizza],\n    all_different(Names),\n    all_different(Sports),\n    all_different(Vacations),\n    all_different(Lunches),\n\n    %% Clue 1: The person who loves the spaghetti eater is somewhere to the left of the person who likes going on cruises.\n    Spaghetti #< Cruise,\n\n    %% Clue 2: The person who loves the stew is directly left of the person who loves eating grilled cheese.\n    Stew #= Grilled_Cheese - 1,\n\n    %% Clue 3: The person who is a pizza lover is in the fourth house.\n    Pizza #= 4,\n\n    %% Clue 4: Peter is somewhere to the left of the person who enjoys mountain retreats.\n    Peter #< Mountain,\n\n    %% Clue 5: The person who likes going on cruises is in the third house.\n    Cruise #= 3,\n\n    %% Clue 6: Arnold is the person who loves soccer.\n    Arnold = Soccer,\n\n    %% Clue 7: The person who loves basketball is not in the first house.\n    Basketball #\\= 1,\n\n    %% Clue 8: There are two houses between the person who prefers city breaks and Eric.\n    abs(City - Eric) #= 2,\n\n    %% Clue 9: The person who loves tennis is the person who likes going on cruises.\n    Tennis = Cruise,\n\n    %% Clue 10: Alice is in the first house.\n    Alice #= 1,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 278482.6,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-4x4-16",
+      "puzzle_size": "4*4",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Color",
+          "Animal",
+          "Education"
+        ],
+        "rows": [
+          [
+            "1",
+            "Alice",
+            "yellow",
+            "fish",
+            "high school"
+          ],
+          [
+            "2",
+            "Eric",
+            "green",
+            "cat",
+            "bachelor"
+          ],
+          [
+            "3",
+            "Peter",
+            "white",
+            "bird",
+            "associate"
+          ],
+          [
+            "4",
+            "Arnold",
+            "red",
+            "horse",
+            "master"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Eric": 2,
+          "Alice": 1,
+          "Arnold": 4,
+          "Peter": 3,
+          "Green": 2,
+          "Red": 4,
+          "White": 3,
+          "Yellow": 1,
+          "Bird": 3,
+          "Fish": 1,
+          "Horse": 4,
+          "Cat": 2,
+          "Master": 4,
+          "Associate": 3,
+          "High_School": 1,
+          "Bachelor": 2
+        },
+        "by_position": {
+          "1": [
+            "Alice",
+            "Yellow",
+            "Fish",
+            "High_School"
+          ],
+          "2": [
+            "Eric",
+            "Green",
+            "Cat",
+            "Bachelor"
+          ],
+          "3": [
+            "Peter",
+            "White",
+            "Bird",
+            "Associate"
+          ],
+          "4": [
+            "Arnold",
+            "Red",
+            "Horse",
+            "Master"
+          ]
+        },
+        "raw_output": "[2,1,4,3,2,4,3,1,3,1,4,2,4,3,1,2]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Eric, Alice, Arnold, Peter,\n        Green, Red, White, Yellow,\n        Bird, Fish, Horse, Cat,\n        Master, Associate, High_School, Bachelor],\n    Vars ins 1..4,\n    Names = [Eric, Alice, Arnold, Peter],\n    Colors = [Green, Red, White, Yellow],\n    Pets = [Bird, Fish, Horse, Cat],\n    Education = [Master, Associate, High_School, Bachelor],\n    all_different(Names),\n    all_different(Colors),\n    all_different(Pets),\n    all_different(Education),\n\n    %% Clue 1: The person whose favorite color is green is the cat lover.\n    Green #= Cat,\n\n    %% Clue 2: There are two houses between Alice and the person whose favorite color is red.\n    abs(Alice - Red) #= 3,\n\n    %% Clue 3: The cat lover is the person with a bachelor's degree.\n    Cat #= Bachelor,\n\n    %% Clue 4: Arnold is the person with a master's degree.\n    Arnold #= Master,\n\n    %% Clue 5: The person who loves yellow is the person with a high school diploma.\n    Yellow #= High_School,\n\n    %% Clue 6: The person with an associate's degree is in the third house.\n    Associate #= 3,\n\n    %% Clue 7: Alice is the person with a high school diploma.\n    Alice #= High_School,\n\n    %% Clue 8: The fish enthusiast is somewhere to the left of the person whose favorite color is red.\n    Fish #< Red,\n\n    %% Clue 9: Peter is the bird keeper.\n    Peter #= Bird,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 249574.0,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-4x4-17",
+      "puzzle_size": "4*4",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Nationality",
+          "Flower",
+          "Education"
+        ],
+        "rows": [
+          [
+            "1",
+            "Alice",
+            "swede",
+            "lilies",
+            "master"
+          ],
+          [
+            "2",
+            "Eric",
+            "norwegian",
+            "daffodils",
+            "high school"
+          ],
+          [
+            "3",
+            "Peter",
+            "brit",
+            "roses",
+            "bachelor"
+          ],
+          [
+            "4",
+            "Arnold",
+            "dane",
+            "carnations",
+            "associate"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Eric": 2,
+          "Alice": 1,
+          "Peter": 3,
+          "Arnold": 4,
+          "Brit": 1,
+          "Swede": 3,
+          "Norwegian": 2,
+          "Dane": 4,
+          "Carnations": 1,
+          "Lilies": 3,
+          "Roses": 2,
+          "Daffodils": 4,
+          "High_School": 2,
+          "Bachelor": 4,
+          "Master": 3,
+          "Associate": 1
+        },
+        "by_position": {
+          "1": [
+            "Alice",
+            "Brit",
+            "Carnations",
+            "Associate"
+          ],
+          "2": [
+            "Eric",
+            "Norwegian",
+            "Roses",
+            "High_School"
+          ],
+          "3": [
+            "Peter",
+            "Swede",
+            "Lilies",
+            "Master"
+          ],
+          "4": [
+            "Arnold",
+            "Dane",
+            "Daffodils",
+            "Bachelor"
+          ]
+        },
+        "raw_output": "[2,1,3,4,1,3,2,4,1,3,2,4,2,4,3,1]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Eric, Alice, Peter, Arnold,\n        Brit, Swede, Norwegian, Dane,\n        Carnations, Lilies, Roses, Daffodils,\n        High_School, Bachelor, Master, Associate],\n    Vars ins 1..4,\n    Names = [Eric, Alice, Peter, Arnold],\n    Nationalities = [Brit, Swede, Norwegian, Dane],\n    Flowers = [Carnations, Lilies, Roses, Daffodils],\n    Education = [High_School, Bachelor, Master, Associate],\n    all_different(Names),\n    all_different(Nationalities),\n    all_different(Flowers),\n    all_different(Education),\n\n    %% Clue 1: The Norwegian is directly left of the person who loves the rose bouquet.\n    Norwegian #= Rose - 1,\n\n    %% Clue 2: The person with a high school diploma is Eric.\n    Eric = High_School,\n\n    %% Clue 3: Arnold is not in the first house.\n    Arnold #\\= 1,\n\n    %% Clue 4: The person with an associate's degree is the person who loves a carnations arrangement.\n    Associate #= Carnations,\n\n    %% Clue 5: The Dane is not in the third house.\n    Dane #\\= 3,\n\n    %% Clue 6: Peter is the person who loves the rose bouquet.\n    Peter = Rose,\n\n    %% Clue 7: The Swedish person and the Norwegian are next to each other.\n    abs(Swede - Norwegian) #= 1,\n\n    %% Clue 8: Eric is in the second house.\n    Eric #= 2,\n\n    %% Clue 9: The person who loves the bouquet of lilies is the person with a master's degree.\n    Master #= Lilies,\n\n    %% Clue 10: The person who loves the bouquet of lilies is the Swedish person.\n    Swede = Lilies,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 272624.7,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-4x4-18",
+      "puzzle_size": "4*4",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Cigar",
+          "Food",
+          "BookGenre"
+        ],
+        "rows": [
+          [
+            "1",
+            "Eric",
+            "prince",
+            "spaghetti",
+            "romance"
+          ],
+          [
+            "2",
+            "Arnold",
+            "pall mall",
+            "grilled cheese",
+            "science fiction"
+          ],
+          [
+            "3",
+            "Alice",
+            "blue master",
+            "pizza",
+            "mystery"
+          ],
+          [
+            "4",
+            "Peter",
+            "dunhill",
+            "stew",
+            "fantasy"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Eric": 1,
+          "Arnold": 2,
+          "Alice": 3,
+          "Peter": 4,
+          "Blue_Master": 3,
+          "Dunhill": 4,
+          "Pall_Mall": 2,
+          "Prince": 1,
+          "Stew": 4,
+          "Spaghetti": 1,
+          "Pizza": 3,
+          "Grilled_Cheese": 2,
+          "Fantasy": 4,
+          "Mystery": 3,
+          "Science_Fiction": 2,
+          "Romance": 1
+        },
+        "by_position": {
+          "1": [
+            "Eric",
+            "Prince",
+            "Spaghetti",
+            "Romance"
+          ],
+          "2": [
+            "Arnold",
+            "Pall_Mall",
+            "Grilled_Cheese",
+            "Science_Fiction"
+          ],
+          "3": [
+            "Alice",
+            "Blue_Master",
+            "Pizza",
+            "Mystery"
+          ],
+          "4": [
+            "Peter",
+            "Dunhill",
+            "Stew",
+            "Fantasy"
+          ]
+        },
+        "raw_output": "[1,2,3,4,3,4,2,1,4,1,3,2,4,3,2,1]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Eric, Arnold, Alice, Peter,\n        Blue_Master, Dunhill, Pall_Mall, Prince,\n        Stew, Spaghetti, Pizza, Grilled_Cheese,\n        Fantasy, Mystery, Science_Fiction, Romance],\n    Vars ins 1..4,\n    Names = [Eric, Arnold, Alice, Peter],\n    Cigars = [Blue_Master, Dunhill, Pall_Mall, Prince],\n    Lunches = [Stew, Spaghetti, Pizza, Grilled_Cheese],\n    BookGenres = [Fantasy, Mystery, Science_Fiction, Romance],\n    all_different(Names),\n    all_different(Cigars),\n    all_different(Lunches),\n    all_different(BookGenres),\n\n    %% Clue 1: Arnold is the person who loves eating grilled cheese.\n    Arnold #= Grilled_Cheese,\n\n    %% Clue 2: The person who smokes Blue Master is Alice.\n    Alice #= Blue_Master,\n\n    %% Clue 3: Arnold is in the second house.\n    Arnold #= 2,\n\n    %% Clue 4: The person who is a pizza lover and the person who loves the stew are next to each other.\n    abs(Pizza - Stew) #= 1,\n\n    %% Clue 5: Arnold is the person who loves science fiction books.\n    Arnold #= Science_Fiction,\n\n    %% Clue 6: The person partial to Pall Mall is the person who loves eating grilled cheese.\n    Pall_Mall #= Grilled_Cheese,\n\n    %% Clue 7: Eric is somewhere to the left of Alice.\n    Eric #< Alice,\n\n    %% Clue 8: The person who is a pizza lover is somewhere to the left of the Dunhill smoker.\n    Pizza #< Dunhill,\n\n    %% Clue 9: The person who loves fantasy books is the person who loves the stew.\n    Fantasy #= Stew,\n\n    %% Clue 10: The person who loves mystery books is not in the first house.\n    Mystery #\\= 1,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 283045.9,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-4x4-19",
+      "puzzle_size": "4*4",
+      "status": "failed",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Color",
+          "Cigar",
+          "Education"
+        ],
+        "rows": [
+          [
+            "1",
+            "Alice",
+            "green",
+            "dunhill",
+            "associate"
+          ],
+          [
+            "2",
+            "Eric",
+            "red",
+            "prince",
+            "high school"
+          ],
+          [
+            "3",
+            "Peter",
+            "yellow",
+            "blue master",
+            "bachelor"
+          ],
+          [
+            "4",
+            "Arnold",
+            "white",
+            "pall mall",
+            "master"
+          ]
+        ]
+      },
+      "parsed_solution": {},
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Arnold, Peter, Alice, Eric,\n        Yellow, Red, White, Green,\n        Dunhill, Blue_master, Pall_mall, Prince,\n        High_school, Associate, Master, Bachelor],\n    Vars ins 1..4,\n    Names = [Arnold, Peter, Alice, Eric],\n    Colors = [Yellow, Red, White, Green],\n    Cigars = [Dunhill, Blue_master, Pall_mall, Prince],\n    Education = [High_school, Associate, Master, Bachelor],\n    all_different(Names),\n    all_different(Colors),\n    all_different(Cigars),\n    all_different(Education),\n\n    %% Clue 1: The person whose favorite color is green is somewhere to the left of the person with a high school diploma.\n    Green #< High_school,\n\n    %% Clue 2: Eric is the person whose favorite color is red.\n    Eric = Red,\n\n    %% Clue 3: There are two houses between Alice and the person who loves white.\n    abs(Alice - White) #= 2,\n\n    %% Clue 4: The person who smokes Blue Master and the person partial to Pall Mall are next to each other.\n    abs(Blue_master - Pall_mall) =:= 1,\n\n    %% Clue 5: The person who loves white is the person with a master's degree.\n    White = Master,\n\n    %% Clue 6: Arnold is in the fourth house.\n    Arnold = 4,\n\n    %% Clue 7: The person who loves yellow is the person who smokes Blue Master.\n    Yellow = Blue_master,\n\n    %% Clue 8: The Dunhill smoker is Alice.\n    Alice = Dunhill,\n\n    %% Clue 9: The person partial to Pall Mall is the person with a master's degree.\n    Pall_mall = Master,\n\n    %% Clue 10: The person who loves yellow is the person with a bachelor's degree.\n    Yellow = Bachelor,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [
+        "Attempt 1: ERROR: [Thread main] -g solve: =:=/2: Arguments are not sufficiently instantiated",
+        "Attempt 2: ERROR: [Thread main] -g solve: =:=/2: Arguments are not sufficiently instantiated",
+        "Attempt 3: ERROR: [Thread main] -g solve: =:=/2: Arguments are not sufficiently instantiated"
+      ],
+      "attempts": 3,
+      "time_ms": 546653.4,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-4x4-2",
+      "puzzle_size": "4*4",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "HairColor",
+          "Height",
+          "Color"
+        ],
+        "rows": [
+          [
+            "1",
+            "Alice",
+            "black",
+            "short",
+            "white"
+          ],
+          [
+            "2",
+            "Eric",
+            "blonde",
+            "average",
+            "green"
+          ],
+          [
+            "3",
+            "Peter",
+            "red",
+            "tall",
+            "red"
+          ],
+          [
+            "4",
+            "Arnold",
+            "brown",
+            "very short",
+            "yellow"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Peter": 3,
+          "Eric": 2,
+          "Alice": 1,
+          "Arnold": 4,
+          "Brown_Hair": 4,
+          "Blonde_Hair": 2,
+          "Red_Hair": 3,
+          "Black_Hair": 1,
+          "Short": 1,
+          "Average": 2,
+          "Tall": 3,
+          "Very_Short": 4,
+          "Green_Color": 2,
+          "Yellow_Color": 4,
+          "White_Color": 1,
+          "Red_Color": 3
+        },
+        "by_position": {
+          "1": [
+            "Alice",
+            "Black_Hair",
+            "Short",
+            "White_Color"
+          ],
+          "2": [
+            "Eric",
+            "Blonde_Hair",
+            "Average",
+            "Green_Color"
+          ],
+          "3": [
+            "Peter",
+            "Red_Hair",
+            "Tall",
+            "Red_Color"
+          ],
+          "4": [
+            "Arnold",
+            "Brown_Hair",
+            "Very_Short",
+            "Yellow_Color"
+          ]
+        },
+        "raw_output": "[3,2,1,4,4,2,3,1,1,2,3,4,2,4,1,3]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Peter, Eric, Alice, Arnold,\n        Brown_Hair, Blonde_Hair, Red_Hair, Black_Hair,\n        Short, Average, Tall, Very_Short,\n        Green_Color, Yellow_Color, White_Color, Red_Color],\n    Vars ins 1..4,\n    Names = [Peter, Eric, Alice, Arnold],\n    HairColors = [Brown_Hair, Blonde_Hair, Red_Hair, Black_Hair],\n    Heights = [Short, Average, Tall, Very_Short],\n    FavoriteColors = [Green_Color, Yellow_Color, White_Color, Red_Color],\n    all_different(Names),\n    all_different(HairColors),\n    all_different(Heights),\n    all_different(FavoriteColors),\n\n    %% Clue 1: Eric is the person who has an average height.\n    Eric #= Average,\n\n    %% Clue 2: The person whose favorite color is red is the person who is tall.\n    Red_Color #= Tall,\n\n    %% Clue 3: The person whose favorite color is green is somewhere to the left of Peter.\n    Green_Color #< Peter,\n\n    %% Clue 4: Arnold is in the fourth house.\n    Arnold #= 4,\n\n    %% Clue 5: The person who has an average height is not in the first house.\n    Average #\\= 1,\n\n    %% Clue 6: The person who is very short is in the fourth house.\n    Very_Short #= 4,\n\n    %% Clue 7: The person who loves white is the person who has black hair.\n    White_Color #= Black_Hair,\n\n    %% Clue 8: The person who is tall is directly left of the person who has brown hair.\n    Tall #= Brown_Hair - 1,\n\n    %% Clue 9: The person who has blonde hair is the person who has an average height.\n    Blonde_Hair #= Average,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 281438.3,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-4x4-20",
+      "puzzle_size": "4*4",
+      "status": "failed",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "Children",
+          "Food",
+          "Color"
+        ],
+        "rows": [
+          [
+            "1",
+            "Arnold",
+            "Fred",
+            "stew",
+            "green"
+          ],
+          [
+            "2",
+            "Peter",
+            "Meredith",
+            "grilled cheese",
+            "yellow"
+          ],
+          [
+            "3",
+            "Eric",
+            "Bella",
+            "pizza",
+            "red"
+          ],
+          [
+            "4",
+            "Alice",
+            "Samantha",
+            "spaghetti",
+            "white"
+          ]
+        ]
+      },
+      "parsed_solution": {},
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Arnold, Alice, Peter, Eric,\n            Bella, Meredith, Fred, Samantha,\n            pizza, spaghetti, grilled_cheese, stew,\n            red, white, yellow, green],\n    Vars ins 1..4,\n    Names = [Arnold, Alice, Peter, Eric],\n    Children = [Bella, Meredith, Fred, Samantha],\n    Lunches = [pizza, spaghetti, grilled_cheese, stew],\n    Colors = [red, white, yellow, green],\n    all_different(Names),\n    all_different(Children),\n    all_different(Lunches),\n    all_different(Colors),\n\n    %% Clue 1: The person who is a pizza lover is somewhere to the left of the person's child is named Samantha.\n    pizza #< Samantha,\n\n    %% Clue 2: The person whose favorite color is red is directly left of the person who loves white.\n    abs(red - white) =:= 1,\n\n    %% Clue 3: Eric is somewhere to the right of the person who loves the stew.\n    Eric #> stew,\n\n    %% Clue 4: The person who loves white is in the fourth house.\n    white =:= 4,\n\n    %% Clue 5: The person whose favorite color is green is not in the second house.\n    green #\\= 2,\n\n    %% Clue 6: The person whose favorite color is red is the person's child is named Bella.\n    red =:= Bella,\n\n    %% Clue 7: The person who loves eating grilled cheese is in the second house.\n    grilled_cheese =:= 2,\n\n    %% Clue 8: There is one house between the person's child is named Meredith and Alice.\n    abs(Meredith - Alice) =:= 2,\n\n    %% Clue 9: There is one house between Peter and Alice.\n    abs(Peter - Alice) =:= 2,\n\n    %% Clue 10: Alice is not in the third house.\n    Alice #\\= 3,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [
+        "Attempt 1: ERROR: [Thread main] -g solve: Type error: `integer' expected, found `pizza' (an atom)",
+        "Attempt 2: ERROR: [Thread main] -g solve: Type error: `integer' expected, found `pizza' (an atom)",
+        "Attempt 3: ERROR: [Thread main] -g solve: Type error: `integer' expected, found `pizza' (an atom)"
+      ],
+      "attempts": 3,
+      "time_ms": 662316.6,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    },
+    {
+      "puzzle_id": "lgp-test-4x4-21",
+      "puzzle_size": "4*4",
+      "status": "correct",
+      "expected_solution": {
+        "header": [
+          "House",
+          "Name",
+          "CarModel",
+          "Birthday",
+          "Hobby"
+        ],
+        "rows": [
+          [
+            "1",
+            "Alice",
+            "honda civic",
+            "sept",
+            "photography"
+          ],
+          [
+            "2",
+            "Arnold",
+            "tesla model 3",
+            "april",
+            "painting"
+          ],
+          [
+            "3",
+            "Eric",
+            "ford f150",
+            "feb",
+            "cooking"
+          ],
+          [
+            "4",
+            "Peter",
+            "toyota camry",
+            "jan",
+            "gardening"
+          ]
+        ]
+      },
+      "parsed_solution": {
+        "success": true,
+        "assignments": {
+          "Eric": 3,
+          "Peter": 4,
+          "Alice": 1,
+          "Arnold": 2,
+          "Tesla_Model_3": 2,
+          "Honda_Civic": 1,
+          "Toyota_Camry": 4,
+          "Ford_F150": 3,
+          "Jan": 4,
+          "April": 2,
+          "Sept": 1,
+          "Feb": 3,
+          "Painting": 2,
+          "Cooking": 3,
+          "Gardening": 4,
+          "Photography": 1
+        },
+        "by_position": {
+          "1": [
+            "Alice",
+            "Honda_Civic",
+            "Sept",
+            "Photography"
+          ],
+          "2": [
+            "Arnold",
+            "Tesla_Model_3",
+            "April",
+            "Painting"
+          ],
+          "3": [
+            "Eric",
+            "Ford_F150",
+            "Feb",
+            "Cooking"
+          ],
+          "4": [
+            "Peter",
+            "Toyota_Camry",
+            "Jan",
+            "Gardening"
+          ]
+        },
+        "raw_output": "[3,4,1,2,2,1,4,3,4,2,1,3,2,3,4,1]"
+      },
+      "prolog_code_generated": ":- use_module(library(clpfd)).\nsolve :-\n    Vars = [Eric, Peter, Alice, Arnold,\n        Tesla_Model_3, Honda_Civic, Toyota_Camry, Ford_F150,\n        Jan, April, Sept, Feb,\n        Painting, Cooking, Gardening, Photography],\n    Vars ins 1..4,\n    Names = [Eric, Peter, Alice, Arnold],\n    CarModels = [Tesla_Model_3, Honda_Civic, Toyota_Camry, Ford_F150],\n    Months = [Jan, April, Sept, Feb],\n    Hobbies = [Painting, Cooking, Gardening, Photography],\n    all_different(Names),\n    all_different(CarModels),\n    all_different(Months),\n    all_different(Hobbies),\n\n    %% Clue 1: The person whose birthday is in January is not in the second house.\n    Jan #\\= 2,\n\n    %% Clue 2: The photography enthusiast is somewhere to the left of Eric.\n    Photography #< Eric,\n\n    %% Clue 3: The photography enthusiast is somewhere to the left of Peter.\n    Photography #< Peter,\n\n    %% Clue 4: The person who owns a Honda Civic is directly left of the person who owns a Tesla Model 3.\n    Honda_Civic #= Tesla_Model_3 - 1,\n\n    %% Clue 5: There is one house between the person who owns a Tesla Model 3 and the person who enjoys gardening.\n    abs(Tesla_Model_3 - Gardening) #= 2,\n\n    %% Clue 6: The person who owns a Tesla Model 3 is Arnold.\n    Arnold = Tesla_Model_3,\n\n    %% Clue 7: The person whose birthday is in February is the person who loves cooking.\n    Feb = Cooking,\n\n    %% Clue 8: The person who owns a Toyota Camry is Peter.\n    Peter = Toyota_Camry,\n\n    %% Clue 9: The person whose birthday is in April is Arnold.\n    April = Arnold,\n\n    %% Clue 10: Alice is the photography enthusiast.\n    Alice = Photography,\n\n    %% Clue 11: Peter is the person whose birthday is in January.\n    Peter = Jan,\n\n    labeling([], Vars),\n    write(Vars), nl.",
+      "errors": [],
+      "attempts": 1,
+      "time_ms": 334335.7,
+      "model_used": "qwen2.5-coder:7b",
+      "models_tried": [
+        "qwen2.5-coder:7b"
+      ],
+      "fixes_applied": []
+    }
+  ]
+}

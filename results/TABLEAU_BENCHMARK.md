@@ -1,0 +1,10 @@
+# Résumé du Benchmark (Dataset Polymath)
+
+| Difficultés | Nombres de problèmes total | Nombre de problèmes traités | Nombre de problèmes résolus |
+|-------------|----------------------------|-----------------------------|-----------------------------|
+| Small | 40 | 40 | 38 |
+| Medium | 40 | 40 | 31 |
+| Large | 30 | 30 | 21 |
+| XL | 30 | 30 | 19 |
+
+## Rapport généré avec succès

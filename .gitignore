@@ -31,8 +31,9 @@ build/
 client/model_learning.json
 server/server_learning.json
 
-# --- Résultats de benchmarks (fichiers JSON volumineux - voir results/ README) ---
-results/
+# --- Résultats de benchmarks (disponibles sur GitHub pour consultation) ---
+# Décommentez si vous voulez exclure les fichiers de résultats
+# results/
 
 # --- IDE & système ---
 .vscode/settings.json
