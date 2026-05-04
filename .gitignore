@@ -32,8 +32,7 @@ client/model_learning.json
 server/server_learning.json
 
 # --- Résultats de benchmarks (fichiers JSON volumineux - voir results/ README) ---
-# Décommenter la ligne suivante pour exclure les résultats complets
-# results/
+results/
 
 # --- IDE & système ---
 .vscode/settings.json

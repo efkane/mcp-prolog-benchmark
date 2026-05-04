@@ -8,13 +8,13 @@
 
 ## Présentation
 
-Ce projet implémente un agent conversationnel capable de résoudre des problèmes logiques formulés en langage naturel. Il combine :
+Ce projet implémente un agent conversationnel pour résoudre des problèmes logiques en langage naturel. Il fonctionne en trois étapes :
 
-- 🧠 **Un LLM** (local via Ollama ou cloud via Groq) pour traduire le langage naturel en code Prolog.
-- ⚙️ **Le protocole MCP** (Model Context Protocol) comme couche d'orchestration entre le LLM et le solveur.
-- 🔬 **SWI-Prolog avec CLP(FD)** pour garantir des solutions mathématiquement correctes.
+1. Un LLM (Ollama localement ou Groq dans le cloud) qui traduit les énoncés en code Prolog.
+2. Le protocole MCP (Model Context Protocol) qui orchestre la communication entre le LLM et le solveur.
+3. SWI-Prolog avec CLP(FD) qui valide et exécute le code Prolog pour trouver les solutions.
 
-L'architecture est conçue pour être **modulaire**, **robuste** (boucle d'auto-correction), et **frugale** (fonctionne entièrement en local sans GPU dédié).
+L'architecture est modulaire, robuste avec une boucle d'auto-correction, et elle fonctionne entièrement en local sans GPU dédié.
 
 ---
 
@@ -51,28 +51,39 @@ L'architecture est conçue pour être **modulaire**, **robuste** (boucle d'auto-
 
 ---
 
-## Résultats (Benchmark ZebraLogic — Polymath Dataset)
+## Résultats
 
-Modèle : **Qwen2.5-Coder:7b** (Ollama local, température=0.0, seed=42)
+Benchmark sur ZebraLogic (dataset Polymath) avec Qwen2.5-Coder:7b en local (température=0.0, seed=42) :
 
-| Difficulté | Total | Résolus | Taux de réussite |
-|------------|-------|---------|-----------------|
-| Small      | 40    | 38      | **95,0 %**      |
-| Medium     | 40    | 31      | **77,5 %**      |
-| Large      | 30    | 21      | **70,0 %**      |
-| XL         | 30    | 19      | **63,3 %**      |
+| Difficulté | Total | Résolis | Taux réussite |
+|------------|-------|---------|---------------------|
+| Small      | 40    | 38      | 95,0 %      |
+| Medium     | 40    | 31      | 77,5 %      |
+| Large      | 30    | 21      | 70,0 %      |
+| XL         | 30    | 19      | 63,3 %      |
 | **Total**  | **140**| **109** | **77,8 %**     |
+
+**Note importante** : Les résultats bruts (fichiers JSON et CSV) ne sont pas stockés sur GitHub pour réduire la taille du dépôt. Vous pouvez les regénérer en lanç ant :
+
+```bash
+python benchmark.py
+```
+
+Les résultats seront enregistrés dans `results/ollama/` sur votre machine.
 
 ---
 
 ## Installation
 
 ### Prérequis
-- Python 3.10+
-- [SWI-Prolog](https://www.swi-prolog.org/Download.html) (variable `swipl` dans le PATH)
-- [Ollama](https://ollama.com/) (pour le mode local) avec le modèle `qwen2.5-coder:7b`
+
+Vous aurez besoin de :
+- Python 3.10 ou plus récent
+- [SWI-Prolog](https://www.swi-prolog.org/Download.html) (accessible depuis le PATH)
+- [Ollama](https://ollama.com/) avec le modèle `qwen2.5-coder:7b`
 
 ### Installation
+
 ```bash
 # Cloner le dépôt
 git clone https://github.com/VOTRE_COMPTE/VOTRE_REPO.git
@@ -86,29 +97,43 @@ python -m venv .venv
 # Installer les dépendances
 pip install -r requirements.txt
 
-# (Optionnel) Configurer les clés API Groq
+# Optionnel : configurer les clés Groq
 cp .env.example .env
-# Editez .env avec vos clés
+# Éditez .env avec vos clés si vous comptez utiliser Groq
 ```
+
+### Fichiers locaux vs GitHub
+
+Ces fichiers ne sont **pas versionnés** sur GitHub (voir `.gitignore`) :
+
+- `results/` et `results/ollama/` — vos benchmarks générés localement
+- `.env` — vos clés API personnelles
+- `.venv/` — votre environnement virtuel
+- Fichiers de log
+
+C'est voulu : ils restent sur votre machine et ne remontent jamais sur le dépôt.
 
 ---
 
 ## Utilisation
 
-### Benchmark ZebraLogic complet
+### Benchmark complet ZebraLogic
+
 ```bash
-# Mode local (Ollama — recommandé, reproducible)
+# Mode local avec Ollama (recommandé)
 python benchmark.py --provider ollama --model qwen2.5-coder:7b
 
-# Mode cloud (Groq)
+# Mode cloud avec Groq
 python benchmark.py --provider groq --size 2x2,3x3 --max 10
 ```
 
 ### Benchmark CSPLib (5 problèmes)
+
 ```bash
 python benchmark_5puzzles.py
 ```
-Les résultats sont sauvegardés dans `results/5puzzles/YYYY-MM-DD_HHMMSS/`.
+
+Les résultats sont enregistrés dans `results/5puzzles/` avec un timestamp.
 
 ---
 
@@ -122,7 +147,7 @@ mcp_prolog/
 ├── generate_summary.py     # Génération des tableaux récapitulatifs
 ├── requirements.txt        # Dépendances Python
 ├── .env.example            # Template de configuration des clés API
-├── rapport_final.tex       # Rapport LaTeX du projet
+
 │
 ├── client/
 │   ├── mcp_client.py       # Client MCP + Providers LLM + Prompts
@@ -141,20 +166,19 @@ mcp_prolog/
 
 ## Comparaison avec l'état de l'art
 
-| Système | Taux de réussite | Environnement LLM |
+| Système | Taux réussite | Environnement LLM |
 |---------|-----------------|-------------------|
 | logic.py | 91,9 % | API Cloud (GPT-4) |
 | Polymath | 84,0 % | API Cloud |
-| **Notre système** | **77,8 %** | **100 % Local (Qwen 7B)** |
+| Notre système | 77,8 % | 100 % Local (Qwen 7B) |
 
-Notre système atteint 77,8 % *entièrement en local*, à coût zéro, sans GPU dédié. Sur serveur dédié avec modèle plus large, ce score est estimé largement supérieur à 90 %.
+Notre système atteint 77,8 % entièrement en local, à coût zéro et sans GPU dédié. Sur un serveur dédié avec un modèle plus grand, ce score devrait être largement supérieur à 90 %.
 
 ---
 
 ## Sécurité
 
-> ⚠️ **Ne jamais committer de fichier `.env`** ou de clés API dans ce dépôt.  
-> Les clés Groq sont chargées depuis les variables d'environnement (voir `.env.example`).
+Ne jamais committer de fichier `.env` ou de clés API dans ce dépôt. Les clés Groq sont chargées depuis les variables d'environnement (voir `.env.example`).
 
 ---
 
